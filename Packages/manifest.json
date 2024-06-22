@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "com.coffee.unmask": "1.4.2",
     "com.cysharp.r3": "1.1.12",
+    "com.cysharp.unitask": "2.5.4",
     "com.unity.collab-proxy": "2.3.1",
+    "com.unity.feature.2d": "2.0.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.inputsystem": "1.7.0",
     "com.unity.textmeshpro": "3.0.6",
@@ -54,7 +57,8 @@
       "name": "OpenUPM",
       "url": "https://package.openupm.com",
       "scopes": [
-        "com.cysharp"
+        "com.cysharp",
+        "com.coffee.unmask"
       ]
     }
   ]
