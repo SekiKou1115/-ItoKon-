@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # untracking file
 Assets/00_WIP*
+Assets/ProceduralTerrainPainter*
+Assets/TerrainSampleAssets*
+Assets/TextMesh Pro*
