@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    [SerializeField] private float fallDelay = 1f; // Delay 
+    [SerializeField] private float fallDelay; // Delay 
+    [SerializeField] private float destroyDelay = 2f; //Destroy  
     private Rigidbody rb;
     private bool hasFallen = false;
 
@@ -18,6 +19,7 @@ public class FallingPlatform : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !hasFallen)
         {
             Invoke("Fall", fallDelay);
+            Invoke("DestroyPlatform", destroyDelay);
             hasFallen = true;
         }
     }
@@ -26,4 +28,10 @@ public class FallingPlatform : MonoBehaviour
     {
         rb.isKinematic = false; // Enable gravity
     }
+
+    void DestroyPlatform()
+    {
+        Destroy(gameObject);  // Destroy the platform GameObject
+    }
 }
+    
