@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6740241976399540673}
   - component: {fileID: 6097483365481117850}
   - component: {fileID: 3165637887054233831}
-  - component: {fileID: 3387622580139391784}
+  - component: {fileID: 5643751347166068822}
   - component: {fileID: 6787687427215467289}
   - component: {fileID: 4431116155586841873}
   m_Layer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3387622580139391784
+--- !u!114 &5643751347166068822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,21 +114,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6086614112727419152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb075a1faf5247a4da86b055256d9e02, type: 3}
+  m_Script: {fileID: 11500000, guid: 72d2dcd6f8f62094b8e5668f0f672f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1160248530374559937}
-  _pressedTextPos: -5
-  _image: {fileID: 6787687427215467289}
-  _normalImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  _text: {fileID: 0}
+  _pressedTextPos: 0
+  _image: {fileID: 0}
+  _normalImage: {fileID: 0}
   _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _highlightColor: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
+  _highlightImage: {fileID: 0}
+  _highlightColor: {r: 0, g: 0, b: 0, a: 0}
   _highlightClip:
     m_PersistentCalls:
       m_Calls: []
-  _pressedImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _pressedColor: {r: 0.61635214, g: 0.61635214, b: 0.61635214, a: 1}
+  _pressedImage: {fileID: 0}
+  _pressedColor: {r: 0, g: 0, b: 0, a: 0}
   _pressedClip:
     m_PersistentCalls:
       m_Calls: []

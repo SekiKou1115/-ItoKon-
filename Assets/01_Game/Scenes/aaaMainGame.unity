@@ -122,17 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &299439578 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7092854665430760897, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-  m_PrefabInstance: {fileID: 3054412602472674085}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf33095e5cdbf34dac496fd6f21faad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &340489380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -462,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 1776023098}
     - target: {fileID: 2735671191455075257, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2735671191455075257, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -470,19 +459,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2735671191455075257, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5177821263150464369, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5177821263150464369, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 140
+      value: 121
       objectReference: {fileID: 0}
     - target: {fileID: 5177821263150464369, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7262899452463845379, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_Actions
@@ -535,11 +524,11 @@ PrefabInstance:
     - target: {fileID: 7262899452463845379, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 299439578}
+      objectReference: {fileID: 0}
     - target: {fileID: 7262899452463845379, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 299439578}
+      objectReference: {fileID: 0}
     - target: {fileID: 7262899452463845379, guid: 18b471f828f12e341a9a051a618d7bc9, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
