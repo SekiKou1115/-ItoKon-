@@ -6,11 +6,17 @@ public class PressurePlate : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Is Pressed");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Is Pressed");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Is Release");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Is Release");
+        }
     }
 }
