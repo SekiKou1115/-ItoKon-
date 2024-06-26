@@ -12,13 +12,14 @@ public class PendulumScript : MonoBehaviour
     private void Update()
     {
         float angle = _limit * Mathf.Sin(Time.time + _random * _speed);
-        transform.localRotation = Quaternion.Euler(0, 0, angle);
+        transform.localRotation = Quaternion.Euler(0, 90, angle);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //collision.gameObject.GetComponent<PlayerController>().IsIncapacitated = true;
             PlayerManager.Instance.Damage();
         }
     }
