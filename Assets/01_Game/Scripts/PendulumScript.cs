@@ -20,7 +20,7 @@ public class PendulumScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("É_ÉÅÅ[ÉW");
-            //collision.gameObject.GetComponent<PlayerController>().IsIncapacitated = true;
+            collision.gameObject.GetComponent<PlayerController>().IsIncapacitated = true;
             PlayerManager.Instance.Damage();
         }
     }
