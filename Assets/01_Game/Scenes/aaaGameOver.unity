@@ -350,7 +350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -860,7 +860,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -966,7 +966,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1098,14 +1098,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 791331173112303079, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182366766250245362, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3746198458532795672, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1149,22 +1141,6 @@ PrefabInstance:
     - target: {fileID: 4089152422074441567, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6543221006600605855, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_Name
