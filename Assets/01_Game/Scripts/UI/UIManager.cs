@@ -75,6 +75,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Cursor.visible = false;
     }
 
     private async void Start()
@@ -195,7 +196,7 @@ public class UIManager : MonoBehaviour
         {
             frame.SetActive(true);
             _state = state;
-
+            Cursor.visible = false;
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
             input.SwitchCurrentActionMap(actionMap);
         }
