@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("プレイヤー")]
     [SerializeField, Tooltip("操作キャラ名")] private Name _movePlayerName;
+    [SerializeField, Tooltip("現在のライフ")] private int _life;
     [SerializeField, Tooltip("最大ライフ")] private int _maxLife;
 
     [Header("カメラ")]
@@ -25,10 +26,10 @@ public class PlayerManager : MonoBehaviour
 
 
     private GameObject[] _player; // 子オブジェクト
-    private int _life; // 現在のライフ
     private bool _isWait = true; // 追従待機判断
     private int _currentCamera = 0; // 選択中のバーチャルカメラのインデックス
 
+    public int Life => _life;
     public bool IsWait => _isWait;
     public Name MovePlayerName => _movePlayerName;
 
