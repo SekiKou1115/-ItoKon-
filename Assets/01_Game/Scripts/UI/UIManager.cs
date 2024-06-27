@@ -175,6 +175,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameState.GAMECLEAR:
+                _defaultUIFrame.SetActive(false);
                 SetState(_clearFrame, EVENT_MAP);
 
                 break;
