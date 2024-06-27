@@ -20,7 +20,11 @@ public class PlayerController : MonoBehaviour
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
 
-    public bool IsIncapacitated => _isIncapacitated;
+    public bool IsIncapacitated
+    {
+        get { return _isIncapacitated; }
+        set { _isIncapacitated = value; }
+    }
 
     /// <summary>
     /// プレイヤー移動
