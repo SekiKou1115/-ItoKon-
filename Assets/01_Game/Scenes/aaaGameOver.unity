@@ -350,7 +350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -860,7 +860,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -966,7 +966,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a723951bb38c31b4f962c7f40427bbb4, type: 2}
+  - {fileID: 2100000, guid: 9248826b3653de640b5f9d7567f68d2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1006,6 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069568326}
   - component: {fileID: 2069568325}
+  - component: {fileID: 2069568327}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1090,6 +1091,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+--- !u!114 &2069568327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069568324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &3731549168656654430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1098,18 +1122,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 791331173112303079, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182366766250245362, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3746198458532795672, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4089152422074441567, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1149,22 +1161,6 @@ PrefabInstance:
     - target: {fileID: 4089152422074441567, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4307626979965557316, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6543221006600605855, guid: 833eeba07daf6414ba5aa15067f3e924, type: 3}
       propertyPath: m_Name
