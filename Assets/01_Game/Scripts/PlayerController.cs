@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
         if (_isHitGround)
         {
+            _isHitGround = false;
             // ジャンプ
             _rb.AddForce(transform.up * _jumpSpeed,
                 ForceMode.VelocityChange);
@@ -72,8 +73,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!PlayerManager.Instance.IsWait ||
-            PlayerManager.Instance.MovePlayerName == _name)
+        if ((!PlayerManager.Instance.IsWait ||
+            PlayerManager.Instance.MovePlayerName == _name) &&
+            !_isIncapacitated)
         {
             // 操作キャラの時
             PlayerMove();
@@ -89,8 +91,6 @@ public class PlayerController : MonoBehaviour
         // 地面に触れたとき
         if (collision.gameObject.CompareTag("Ground"))
         {
-            _isHitGround = true;
-
             // 落下時間がダメージ値を満たしたら
             if (_dropDistance >= _maxDropDistance)
             {
@@ -105,6 +105,16 @@ public class PlayerController : MonoBehaviour
             _isIncapacitated = false;
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        // 地面に触れているとき
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isHitGround = true;
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         // 地面から離れたとき
