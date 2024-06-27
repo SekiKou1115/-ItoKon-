@@ -65,7 +65,6 @@ public class UIManager : MonoBehaviour
     private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
 
     public bool _isUIMove = false;
-
     // ---------------------------- Property
     public GameState State { get { return _state; } }
     // HP˜g
@@ -176,6 +175,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameState.GAMECLEAR:
+                Title._isDoneTitle = false;
                 _defaultUIFrame.SetActive(false);
                 SetState(_clearFrame, EVENT_MAP);
 
@@ -247,23 +247,23 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    //public async void divOnClear()
-    //{
-    //    if (!UIManager.Instance._isUIMove)
-    //    {
-    //        var closeTask = OpenClear(destroyCancellationToken);
-    //        if (await closeTask.SuppressCancellationThrow()) { return; }
-    //    }
-    //}
-    //private async UniTask OpenClear(CancellationToken ct)
-    //{
-    //    await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
-    //}
+    public async void divOnClear()
+    {
+        if (!UIManager.Instance._isUIMove)
+        {
+            var closeTask = OpenClear(destroyCancellationToken);
+            if (await closeTask.SuppressCancellationThrow()) { return; }
+        }
+    }
+    private async UniTask OpenClear(CancellationToken ct)
+    {
+        await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
+    }
 
-    //public async void DivOnOver()
-    //{
-    //    await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex + 1);
-    //}
+    public async void DivOnOver()
+    {
+        await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void HPDraw(int count)
     {

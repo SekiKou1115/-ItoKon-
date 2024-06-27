@@ -22,16 +22,25 @@ public class Title : MonoBehaviour
     [SerializeField] private float _scale;
 
     // ---------------------------- Field
-
+    public static bool _isDoneTitle;
     // ---------------------------- Property
-
     // ---------------------------- UnityMessage
 
     private async void Start()
     {
-        //  スタート時タスク
-        var startTask = StartTitle(destroyCancellationToken);
-        if (await startTask.SuppressCancellationThrow()) { return; }
+        if (!(_isDoneTitle))
+        {
+            //  スタート時タスク
+            var startTask = StartTitle(destroyCancellationToken);
+            if (await startTask.SuppressCancellationThrow()) { return; }
+
+        }
+        else
+        {
+            var skipTask = SkipTitle(destroyCancellationToken);
+            if (await skipTask.SuppressCancellationThrow()) { return; }
+        }
+        
     }
 
     private void Awake()
@@ -45,14 +54,8 @@ public class Title : MonoBehaviour
     /// </summary>
     public async void OnPlay()
     {
-        if (!UIManager.Instance._isUIMove)
-        {
-            _textFrame.GetComponent<CanvasGroup>().alpha = 0;
-            _textFrame.GetComponent<CanvasGroup>().interactable = false;
-            var endTask = EndTitle(destroyCancellationToken);
-            if (await endTask.SuppressCancellationThrow()) { return; }
-            this.gameObject.SetActive(false);
-        }
+        var skipTask = SkipTitle(destroyCancellationToken);
+        if (await skipTask.SuppressCancellationThrow()) { return; }
     }
 
     // ---------------------------- PrivateMethod
@@ -93,27 +96,45 @@ public class Title : MonoBehaviour
     /// <returns></returns>
     private async UniTask EndTitle(CancellationToken ct)
     {
-        //  待機
-        await UIManager.Instance.DelayTime(_waitTime, ct);
+        if(!_isDoneTitle)
+        {
+            //  待機
+            await UIManager.Instance.DelayTime(_waitTime, ct);
 
-        var tasks = new List<UniTask>
+            var tasks = new List<UniTask>
         {
             // フェード
             DelayMove(ct),
 
         };
-        // 待機移動
-        async UniTask DelayMove(CancellationToken ct)
-        {
-            await UIManager.Instance.DelayTime(_waitTime, ct);
-            await UIManager.Instance.Move(_logoFrame, _positions[1].position, _duration, Ease.InBack, ct);
-        }
-        await UniTask.WhenAll(tasks);
+            // 待機移動
+            async UniTask DelayMove(CancellationToken ct)
+            {
+                await UIManager.Instance.DelayTime(_waitTime, ct);
+                await UIManager.Instance.Move(_logoFrame, _positions[1].position, _duration, Ease.InBack, ct);
+            }
+            await UniTask.WhenAll(tasks);
 
-        //  待機
-        await UIManager.Instance.DelayTime(_waitTime * 2, ct);
+            //  待機
+            await UIManager.Instance.DelayTime(_waitTime * 2, ct);
+        }
+
+        _isDoneTitle = true;
+
         // 状態遷移
         await UIManager.Instance.StateChange(GameState.DEFAULT, ct);
 
+    }
+
+    private async UniTask SkipTitle(CancellationToken ct)
+    {
+        if (!UIManager.Instance._isUIMove)
+        {
+            _textFrame.GetComponent<CanvasGroup>().alpha = 0;
+            _textFrame.GetComponent<CanvasGroup>().interactable = false;
+            var endTask = EndTitle(destroyCancellationToken);
+            if (await endTask.SuppressCancellationThrow()) { return; }
+            this.gameObject.SetActive(false);
+        }
     }
 }
