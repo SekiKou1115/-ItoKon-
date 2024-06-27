@@ -91,6 +91,7 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1.0f;
         //  ˆÚ“®
         await UIManager.Instance.Move(_pauseFrame, _positions[1].position, _duration, _ease, ct);
+        _pauseFrame.SetActive(false);
     }
 
    
