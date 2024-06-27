@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
         if (_isHitGround)
         {
+            _isHitGround = false;
             // ƒWƒƒƒ“ƒv
             _rb.AddForce(transform.up * _jumpSpeed,
                 ForceMode.VelocityChange);
