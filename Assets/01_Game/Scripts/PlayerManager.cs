@@ -113,7 +113,7 @@ public class PlayerManager : MonoBehaviour
             (_player[0].GetComponent<PlayerController>().IsIncapacitated &&
             _player[1].GetComponent<PlayerController>().IsIncapacitated))
         {
-            Debug.Log("ゲームオーバー");
+            UIManager.Instance.DivOnOver();
         }
     }
 
