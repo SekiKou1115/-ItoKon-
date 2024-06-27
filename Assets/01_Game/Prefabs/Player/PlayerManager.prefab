@@ -852,7 +852,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movePlayerName: 0
-  _maxLife: 5
+  _life: 0
+  _maxLife: 3
   _freeLookCameraList:
   - {fileID: 0}
   - {fileID: 0}
