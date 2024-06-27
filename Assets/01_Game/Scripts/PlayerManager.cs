@@ -29,7 +29,6 @@ public class PlayerManager : MonoBehaviour
     private bool _isWait = true; // 追従待機判断
     private int _currentCamera = 0; // 選択中のバーチャルカメラのインデックス
 
-    public int Life => _life;
     public bool IsWait => _isWait;
     public Name MovePlayerName => _movePlayerName;
 
@@ -80,6 +79,7 @@ public class PlayerManager : MonoBehaviour
     public void Damage()
     {
         _life--;
+        UIManager.Instance.HPDraw(_life);
     }
 
 

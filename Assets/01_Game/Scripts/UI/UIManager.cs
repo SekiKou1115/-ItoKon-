@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
     //private readonly float FADE_SCALE = 3;
 
     private GameState _state;
-    private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause",EVENT_MAP = "Event";
+    private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
 
     public bool _isUIMove = false;
 
@@ -90,8 +90,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(_startTransform != null || _goalTransform != null) // ヌルチェック
-                _distanceSlider.value = Vector3.Distance(_startTransform.position, _goalTransform.position);
+        if (_startTransform != null || _goalTransform != null) // ヌルチェック
+            _distanceSlider.value = Vector3.Distance(_startTransform.position, _goalTransform.position);
 
     }
 
@@ -192,10 +192,10 @@ public class UIManager : MonoBehaviour
         }
 
         void SetState(GameObject frame, string actionMap)
-        { 
+        {
             frame.SetActive(true);
-             _state = state;
-            
+            _state = state;
+
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
             input.SwitchCurrentActionMap(actionMap);
         }
@@ -246,7 +246,7 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public async void divOnClear() 
+    public async void divOnClear()
     {
         if (!UIManager.Instance._isUIMove)
         {
@@ -259,9 +259,17 @@ public class UIManager : MonoBehaviour
         await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
     }
 
-    public async void divOnOver()
+    public async void DivOnOver()
     {
-        await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex+1);
+        await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void HPDraw(int count)
+    {
+        for (int i = 0; i < _heartImage.Length; i++)
+        {
+            _heartImage[i].SetActive(!(i >= count));
+        }
     }
 
     // ---------------------------- PrivateMethod
@@ -278,7 +286,7 @@ public class UIManager : MonoBehaviour
         _clearFrame.SetActive(false);
         _gameoverFrame.SetActive(false);
 
-        await StateChange(GameState.EVENTS,ct);
+        await StateChange(GameState.EVENTS, ct);
 
     }
 
@@ -298,7 +306,7 @@ public class UIManager : MonoBehaviour
         {
             await InitState(ct);
         }
-        
+
         /*
         ////  待機
         //await DelayTime(_waitTime * 2, ct);
