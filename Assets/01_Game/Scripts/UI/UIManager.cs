@@ -247,23 +247,23 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public async void divOnClear()
-    {
-        if (!UIManager.Instance._isUIMove)
-        {
-            var closeTask = OpenClear(destroyCancellationToken);
-            if (await closeTask.SuppressCancellationThrow()) { return; }
-        }
-    }
-    private async UniTask OpenClear(CancellationToken ct)
-    {
-        await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
-    }
+    //public async void divOnClear()
+    //{
+    //    if (!UIManager.Instance._isUIMove)
+    //    {
+    //        var closeTask = OpenClear(destroyCancellationToken);
+    //        if (await closeTask.SuppressCancellationThrow()) { return; }
+    //    }
+    //}
+    //private async UniTask OpenClear(CancellationToken ct)
+    //{
+    //    await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
+    //}
 
-    public async void DivOnOver()
-    {
-        await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    //public async void DivOnOver()
+    //{
+    //    await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex + 1);
+    //}
 
     public void HPDraw(int count)
     {
