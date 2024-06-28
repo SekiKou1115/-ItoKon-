@@ -31,7 +31,11 @@ public class PlayerManager : MonoBehaviour
     private int _currentCamera = 0; // 選択中のバーチャルカメラのインデックス
 
     public bool IsWait => _isWait;
-    public Name MovePlayerName => _movePlayerName;
+    public Name MovePlayerName
+    {
+        get { return _movePlayerName; }
+        set { _movePlayerName = value; }
+    }
 
     /// <summary>
     /// 操作キャラ切り替え
@@ -39,7 +43,13 @@ public class PlayerManager : MonoBehaviour
     /// <param name="context"></param>
     public void BrideAndGroomSwitch(InputAction.CallbackContext context)
     {
-        if ((_freeLookCameraList == null || _freeLookCameraList.Length <= 0) || !context.performed)
+        if (!context.performed)
+            return;
+        OnSwitch();
+    }
+    public void OnSwitch()
+    {
+        if ((_freeLookCameraList == null || _freeLookCameraList.Length <= 0))
             return;
 
         // 以前のバーチャルカメラを非選択

@@ -175,6 +175,8 @@ public class PlayerController : MonoBehaviour
         if (_dropDistance - gameObject.transform.position.y > _maxDropDistance)
         {
             PlayerManager.Instance.Damage();
+            PlayerManager.Instance.OnSwitch();
+            Attracted(this.destroyCancellationToken);
             _isIncapacitated = true;
         }
     }
