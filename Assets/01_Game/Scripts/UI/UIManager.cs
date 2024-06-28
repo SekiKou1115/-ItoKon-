@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -38,7 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField, Tooltip("アニメ時間")] private float _heartDuration;
     */
     [SerializeField, Tooltip("スライダーコンポーネント")] private Slider _distanceSlider;
-    [SerializeField, Tooltip("プレイヤーの位置")] private Transform _startTransform;
+    [SerializeField, Tooltip("プレイヤーの位置")] private Transform[] _playersTransform;
     [SerializeField, Tooltip("ゴールの位置")] private Transform _goalTransform;
     /*
     ミニマップ用
@@ -60,6 +61,8 @@ public class UIManager : MonoBehaviour
 
     //private readonly float FADE_TIME = 2;
     //private readonly float FADE_SCALE = 3;
+
+    private static Vector3 _playerDistance;
 
     private GameState _state;
     private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
@@ -90,10 +93,20 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (_startTransform != null || _goalTransform != null) // ヌルチェック
-            _distanceSlider.value = Vector3.Distance(_startTransform.position, _goalTransform.position);
+        if (_playerDistance != null || _goalTransform != null) // ヌルチェック
+        {
+            _playerDistance = Vector3.Lerp(_playersTransform[0].position, _playersTransform[1].position, .5f);
+            _distanceSlider.value = Vector3.Distance(_playerDistance, _goalTransform.position);
+        }
+           
 
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log($"{other.transform.name} is OnTriggerEnter in Sphere.");
+
+    //}
 
     // ---------------------------- PublicMethod
 
@@ -197,8 +210,13 @@ public class UIManager : MonoBehaviour
             frame.SetActive(true);
             _state = state;
             Cursor.visible = false;
-            var input = PlayerManager.Instance.GetComponent<PlayerInput>();
-            input.SwitchCurrentActionMap(actionMap);
+
+            var input = new List<PlayerInput>();
+            input[0] = PlayerManager.Instance.GetComponent<PlayerInput>();
+
+            input[0].SwitchCurrentActionMap(actionMap);
+            
+            
         }
     }
 
@@ -280,8 +298,12 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private async UniTask InitState(CancellationToken ct)
     {
-        if (_startTransform != null || _goalTransform != null) // ヌルチェック
-            _distanceSlider.maxValue = Vector3.Distance(_startTransform.position, _goalTransform.position);
+        if (_goalTransform != null) // ヌルチェック
+        {
+            _playerDistance = Vector3.Lerp(_playersTransform[0].position, _playersTransform[1].position, .5f); 
+            _distanceSlider.maxValue = Vector3.Distance(_playerDistance, _goalTransform.position);
+        }
+
         _titleFrame.SetActive(true);
         _pauseFrame.SetActive(false);
         _clearFrame.SetActive(false);
