@@ -1,8 +1,13 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 
 public class PlayerController : MonoBehaviour
@@ -12,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("回転速度")] private float _rotateSpeed;
     [SerializeField, Tooltip("ジャンプ開始速度")] private float _jumpSpeed;
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
+    [SerializeField, Tooltip("相方")] private GameObject _partner;
 
 
     private bool _isHitGround; // 地面に触れているか判定
@@ -20,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
 
+    public PlayerManager.Name Name => _name;
     public bool IsIncapacitated
     {
         get { return _isIncapacitated; }
@@ -66,6 +73,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 引き寄せられる
+    /// </summary>
+    public async void Attracted(CancellationToken ct)
+    {
+        Debug.Log("引き寄せられる");
+        await transform.DOMove(_partner.transform.position, 5)
+                 .SetLink(gameObject)
+                 .SetEase(Ease.OutExpo)
+                 .ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: ct);
+    }
 
     private void Awake()
     {

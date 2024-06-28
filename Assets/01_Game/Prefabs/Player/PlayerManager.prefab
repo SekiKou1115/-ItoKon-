@@ -237,7 +237,8 @@ MonoBehaviour:
   _speed: 3
   _rotateSpeed: 300
   _jumpSpeed: 7
-  _maxDropDistance: 6
+  _maxDropDistance: 7
+  _partner: {fileID: 0}
 --- !u!114 &2325320772100595316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +535,8 @@ MonoBehaviour:
   _speed: 3
   _rotateSpeed: 300
   _jumpSpeed: 7
-  _maxDropDistance: 6
+  _maxDropDistance: 7
+  _partner: {fileID: 0}
 --- !u!114 &9162002252624085894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +812,7 @@ MonoBehaviour:
   _movePlayerName: 0
   _life: 0
   _maxLife: 3
+  _maxAttract: 40
   _freeLookCameraList:
   - {fileID: 0}
   - {fileID: 0}
