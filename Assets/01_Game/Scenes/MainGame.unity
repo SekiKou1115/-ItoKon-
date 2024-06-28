@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5990178030044009232, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97037405
+      value: 0.9703741
       objectReference: {fileID: 0}
     - target: {fileID: 5990178030044009232, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6092179673373505306, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.21589302
+      value: 0.21589305
       objectReference: {fileID: 0}
     - target: {fileID: 6092179673373505306, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -326,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6092179673373505306, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.014907032
+      value: -0.014907034
       objectReference: {fileID: 0}
     - target: {fileID: 6341838172607258606, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -338,15 +338,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9113560925382960271, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.20891054
+      value: 0.20891057
       objectReference: {fileID: 0}
     - target: {fileID: 9113560925382960271, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.06735694
+      value: 0.067356914
       objectReference: {fileID: 0}
     - target: {fileID: 9113560925382960271, guid: 29cd759764fed6643bff8b90492b0b1e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.014424903
+      value: -0.0144249005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -712,6 +712,18 @@ PrefabInstance:
       propertyPath: _goalTransform
       value: 
       objectReference: {fileID: 1004085076}
+    - target: {fileID: 878866417686765390, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: _players.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 878866417686765390, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: _players.Array.data[0]
+      value: 
+      objectReference: {fileID: 296271268}
+    - target: {fileID: 878866417686765390, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: _players.Array.data[1]
+      value: 
+      objectReference: {fileID: 251410291}
     - target: {fileID: 878866417686765390, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
       propertyPath: _playersTransform.Array.data[0]
       value: 

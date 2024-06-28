@@ -141,6 +141,7 @@ public class UIManager : MonoBehaviour
         _isUIMove = true;
         RayHit(false);
         await obj.transform.DOMove(endValue, duration)
+            .SetUpdate(true)
             .SetEase(ease)
             .SetUpdate(true)
             .SetLink(obj)
@@ -178,6 +179,7 @@ public class UIManager : MonoBehaviour
         switch (state)
         {
             case GameState.DEFAULT:
+                Cursor.visible = false;
                 SetState(_defaultUIFrame, DEFAULT_MAP);
 
                 break;
@@ -200,6 +202,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameState.EVENTS:
+
                 SetState(_titleFrame, EVENT_MAP);
 
                 break;
@@ -209,13 +212,17 @@ public class UIManager : MonoBehaviour
         {
             frame.SetActive(true);
             _state = state;
-            Cursor.visible = false;
+            //Cursor.visible = false;
 
-            var input = new List<PlayerInput>();
-            input[0] = PlayerManager.Instance.GetComponent<PlayerInput>();
+            var input = PlayerManager.Instance.GetComponent<PlayerInput>();
+            var input_p1 = _players[0].GetComponent<PlayerInput>();
+            var input_p2 = _players[1].GetComponent<PlayerInput>();
 
-            input[0].SwitchCurrentActionMap(actionMap);
+            input.SwitchCurrentActionMap(actionMap);
+            input_p1.SwitchCurrentActionMap(actionMap);
+            input_p2.SwitchCurrentActionMap(actionMap);
             
+
             
         }
     }
