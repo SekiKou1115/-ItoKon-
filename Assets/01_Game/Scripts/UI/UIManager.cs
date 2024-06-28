@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -38,7 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField, Tooltip("アニメ時間")] private float _heartDuration;
     */
     [SerializeField, Tooltip("スライダーコンポーネント")] private Slider _distanceSlider;
-    [SerializeField, Tooltip("プレイヤーの位置")] private Transform _startTransform;
+    [SerializeField, Tooltip("プレイヤー")] private GameObject[] _players;
     [SerializeField, Tooltip("ゴールの位置")] private Transform _goalTransform;
     /*
     ミニマップ用
@@ -61,11 +62,12 @@ public class UIManager : MonoBehaviour
     //private readonly float FADE_TIME = 2;
     //private readonly float FADE_SCALE = 3;
 
+    private static Vector3 _playerDistance;
+
     private GameState _state;
     private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
 
     public bool _isUIMove = false;
-
     // ---------------------------- Property
     public GameState State { get { return _state; } }
     // HP枠
@@ -86,15 +88,25 @@ public class UIManager : MonoBehaviour
         //  スタート時タスク
         var startTask = StartTask(destroyCancellationToken);
         if (await startTask.SuppressCancellationThrow()) { return; }
-
     }
 
     private void Update()
     {
-        if (_startTransform != null || _goalTransform != null) // ヌルチェック
-            _distanceSlider.value = Vector3.Distance(_startTransform.position, _goalTransform.position);
+        if (_playerDistance != null || _goalTransform != null) // ヌルチェック
+        {
+            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
+            _distanceSlider.value = Vector3.Distance(_playerDistance, _goalTransform.position);
+
+            if(_distanceSlider.value < 5)
+            {
+                divOnClear();
+            }
+        }
+           
 
     }
+
+    
 
     // ---------------------------- PublicMethod
 
@@ -129,6 +141,7 @@ public class UIManager : MonoBehaviour
         _isUIMove = true;
         RayHit(false);
         await obj.transform.DOMove(endValue, duration)
+            .SetUpdate(true)
             .SetEase(ease)
             .SetUpdate(true)
             .SetLink(obj)
@@ -166,6 +179,7 @@ public class UIManager : MonoBehaviour
         switch (state)
         {
             case GameState.DEFAULT:
+                Cursor.visible = false;
                 SetState(_defaultUIFrame, DEFAULT_MAP);
 
                 break;
@@ -176,6 +190,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameState.GAMECLEAR:
+                Title._isDoneTitle = false;
                 _defaultUIFrame.SetActive(false);
                 SetState(_clearFrame, EVENT_MAP);
 
@@ -187,6 +202,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             case GameState.EVENTS:
+
                 SetState(_titleFrame, EVENT_MAP);
 
                 break;
@@ -196,9 +212,18 @@ public class UIManager : MonoBehaviour
         {
             frame.SetActive(true);
             _state = state;
-            Cursor.visible = false;
+            //Cursor.visible = false;
+
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
+            var input_p1 = _players[0].GetComponent<PlayerInput>();
+            var input_p2 = _players[1].GetComponent<PlayerInput>();
+
             input.SwitchCurrentActionMap(actionMap);
+            input_p1.SwitchCurrentActionMap(actionMap);
+            input_p2.SwitchCurrentActionMap(actionMap);
+            
+
+            
         }
     }
 
@@ -280,8 +305,12 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private async UniTask InitState(CancellationToken ct)
     {
-        if (_startTransform != null || _goalTransform != null) // ヌルチェック
-            _distanceSlider.maxValue = Vector3.Distance(_startTransform.position, _goalTransform.position);
+        if (_goalTransform != null) // ヌルチェック
+        {
+            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f); 
+            _distanceSlider.maxValue = Vector3.Distance(_playerDistance, _goalTransform.position);
+        }
+
         _titleFrame.SetActive(true);
         _pauseFrame.SetActive(false);
         _clearFrame.SetActive(false);
@@ -334,6 +363,12 @@ public class UIManager : MonoBehaviour
         //await UniTask.WhenAll(allTasks);
         */
     }
+
+    //private async UniTask GoalTask(CancellationToken ct)
+    //{
+    //        await UniTask.WaitUntil(() => _distanceSlider.value <5);
+    //        await OpenClear(ct);
+    //}
 
     /// <summary>
     /// 接触判定変更

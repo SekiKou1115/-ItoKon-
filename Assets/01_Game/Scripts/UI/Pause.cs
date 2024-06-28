@@ -54,6 +54,7 @@ public class Pause : MonoBehaviour
     {
         if (!UIManager.Instance._isUIMove)
         {
+            
             var closeTask = ClosePause(destroyCancellationToken);
             if (await closeTask.SuppressCancellationThrow()) { return; }
         }
@@ -75,6 +76,7 @@ public class Pause : MonoBehaviour
 
     private async UniTask OpenPause(CancellationToken ct)
     {
+        Cursor.visible = true;
         // ó‘Ô‘JˆÚ
         await UIManager.Instance.StateChange(GameState.PAUSE, ct);
         _pauseBack.SetActive(true);
@@ -85,6 +87,7 @@ public class Pause : MonoBehaviour
 
     private async UniTask ClosePause(CancellationToken ct)
     {
+        Cursor.visible = false;
         // ó‘Ô‘JˆÚ
         await UIManager.Instance.StateChange(GameState.DEFAULT, ct);
         _pauseBack.SetActive(false); 
