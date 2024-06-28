@@ -515,7 +515,9 @@ MonoBehaviour:
   - {fileID: 8509767378391049350}
   - {fileID: 3694167766605104392}
   _distanceSlider: {fileID: 967881345840440405}
-  _startTransform: {fileID: 0}
+  _playersTransform:
+  - {fileID: 0}
+  - {fileID: 0}
   _goalTransform: {fileID: 0}
   _fadeMask: {fileID: 5570139581133762751}
   _fadeDuration: 0.5
