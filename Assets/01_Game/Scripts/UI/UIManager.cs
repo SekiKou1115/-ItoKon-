@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     [SerializeField, Tooltip("アニメ時間")] private float _heartDuration;
     */
     [SerializeField, Tooltip("スライダーコンポーネント")] private Slider _distanceSlider;
-    [SerializeField, Tooltip("プレイヤーの位置")] private Transform[] _playersTransform;
+    [SerializeField, Tooltip("プレイヤー")] private GameObject[] _players;
     [SerializeField, Tooltip("ゴールの位置")] private Transform _goalTransform;
     /*
     ミニマップ用
@@ -88,25 +88,25 @@ public class UIManager : MonoBehaviour
         //  スタート時タスク
         var startTask = StartTask(destroyCancellationToken);
         if (await startTask.SuppressCancellationThrow()) { return; }
-
     }
 
     private void Update()
     {
         if (_playerDistance != null || _goalTransform != null) // ヌルチェック
         {
-            _playerDistance = Vector3.Lerp(_playersTransform[0].position, _playersTransform[1].position, .5f);
+            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
             _distanceSlider.value = Vector3.Distance(_playerDistance, _goalTransform.position);
+
+            if(_distanceSlider.value < 5)
+            {
+                divOnClear();
+            }
         }
            
 
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log($"{other.transform.name} is OnTriggerEnter in Sphere.");
-
-    //}
+    
 
     // ---------------------------- PublicMethod
 
@@ -300,7 +300,7 @@ public class UIManager : MonoBehaviour
     {
         if (_goalTransform != null) // ヌルチェック
         {
-            _playerDistance = Vector3.Lerp(_playersTransform[0].position, _playersTransform[1].position, .5f); 
+            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f); 
             _distanceSlider.maxValue = Vector3.Distance(_playerDistance, _goalTransform.position);
         }
 
@@ -356,6 +356,12 @@ public class UIManager : MonoBehaviour
         //await UniTask.WhenAll(allTasks);
         */
     }
+
+    //private async UniTask GoalTask(CancellationToken ct)
+    //{
+    //        await UniTask.WaitUntil(() => _distanceSlider.value <5);
+    //        await OpenClear(ct);
+    //}
 
     /// <summary>
     /// 接触判定変更
