@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, Tooltip("操作キャラ名")] private Name _movePlayerName;
     [SerializeField, Tooltip("現在のライフ")] private int _life;
     [SerializeField, Tooltip("最大ライフ")] private int _maxLife;
+    [SerializeField, Tooltip("引き寄せ始める距離")] private float _maxAttract;
 
     [Header("カメラ")]
     [SerializeField, Tooltip("カメラ一覧")] private CinemachineFreeLook[] _freeLookCameraList;
@@ -71,6 +72,7 @@ public class PlayerManager : MonoBehaviour
     public void WaitFollowUpChange(InputAction.CallbackContext context)
     {
         _isWait = !_isWait;
+        Attract();
     }
 
     /// <summary>
@@ -116,6 +118,27 @@ public class PlayerManager : MonoBehaviour
             UIManager.Instance.DivOnOver();
         }
     }
+
+    /// <summary>
+    /// 引き寄せる
+    /// </summary>
+    private void Attract()
+    {
+        var distance = Vector3.Distance(_player[0].transform.position, _player[1].transform.position);
+        Debug.Log(distance);
+        if (distance >= _maxAttract)
+        {
+            foreach (var obj in _player)
+            {
+                if (obj.GetComponent<PlayerController>().Name != _movePlayerName)
+                {
+                    obj.GetComponent<PlayerController>().Attracted(this.destroyCancellationToken);
+                    break;
+                }
+            }
+        }
+    }
+
 
     /// <summary>
     /// 子オブジェクトの取得

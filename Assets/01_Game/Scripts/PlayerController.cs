@@ -1,8 +1,13 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.StandaloneInputModule;
 
 public class PlayerController : MonoBehaviour
@@ -12,14 +17,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("回転速度")] private float _rotateSpeed;
     [SerializeField, Tooltip("ジャンプ開始速度")] private float _jumpSpeed;
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
+    [SerializeField, Tooltip("相方")] private GameObject _partner;
 
 
     private bool _isHitGround; // 地面に触れているか判定
-    Rigidbody _rb;
+    private Rigidbody _rb;
     private Vector2 _inputMove;
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
 
+    public PlayerManager.Name Name => _name;
     public bool IsIncapacitated
     {
         get { return _isIncapacitated; }
@@ -66,12 +73,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 引き寄せられる
+    /// </summary>
+    public async void Attracted(CancellationToken ct)
+    {
+        Debug.Log("引き寄せられる");
+        await transform.DOMove(_partner.transform.position, 5)
+                 .SetLink(gameObject)
+                 .SetEase(Ease.OutExpo)
+                 .ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: ct);
+    }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _isHitGround = false;
-        _dropDistance = 0;
+        _dropDistance = gameObject.transform.position.y;
         _isIncapacitated = false;
     }
 
@@ -84,9 +102,6 @@ public class PlayerController : MonoBehaviour
             // 操作キャラの時
             PlayerMove();
         }
-
-        // 落下処理
-        LandingDamage();
     }
 
 
@@ -95,13 +110,8 @@ public class PlayerController : MonoBehaviour
         // 地面に触れたとき
         if (collision.gameObject.CompareTag("Ground"))
         {
-            // 落下時間がダメージ値を満たしたら
-            if (_dropDistance >= _maxDropDistance)
-            {
-                _dropDistance = 0;
-                _isIncapacitated = true;
-                PlayerManager.Instance.Damage();
-            }
+            // 落下処理
+            LandingDamage();
         }
         // 相方に触れたとき
         else if (collision.gameObject.CompareTag("Player"))
@@ -124,6 +134,7 @@ public class PlayerController : MonoBehaviour
         // 地面から離れたとき
         if (collision.gameObject.CompareTag("Ground"))
         {
+            _dropDistance = gameObject.transform.position.y;
             _isHitGround = false;
         }
     }
@@ -158,14 +169,13 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void LandingDamage()
     {
-        // 落下時間計測
-        if (!_isHitGround)
+        var dis = _dropDistance - gameObject.transform.position.y;
+        Debug.Log(dis);
+        // ジャンプした位置が
+        if (_dropDistance - gameObject.transform.position.y > _maxDropDistance)
         {
-            _dropDistance += Time.deltaTime;
-        }
-        else
-        {
-            _dropDistance = 0;
+            PlayerManager.Instance.Damage();
+            _isIncapacitated = true;
         }
     }
 }
