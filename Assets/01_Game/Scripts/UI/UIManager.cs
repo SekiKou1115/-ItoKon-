@@ -87,7 +87,8 @@ public class UIManager : MonoBehaviour
 
         //  スタート時タスク
         var startTask = StartTask(destroyCancellationToken);
-        if (await startTask.SuppressCancellationThrow()) { return; }
+        if (await startTask.SuppressCancellationThrow())
+        { return; }
     }
 
     private void Update()
@@ -97,16 +98,16 @@ public class UIManager : MonoBehaviour
             _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
             _distanceSlider.value = Vector3.Distance(_playerDistance, _goalTransform.position);
 
-            if(_distanceSlider.value < 5)
+            if (_distanceSlider.value < 5)
             {
                 divOnClear();
             }
         }
-           
+
 
     }
 
-    
+
 
     // ---------------------------- PublicMethod
 
@@ -212,7 +213,6 @@ public class UIManager : MonoBehaviour
         {
             frame.SetActive(true);
             _state = state;
-            //Cursor.visible = false;
 
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
             var input_p1 = _players[0].GetComponent<PlayerInput>();
@@ -221,9 +221,9 @@ public class UIManager : MonoBehaviour
             input.SwitchCurrentActionMap(actionMap);
             input_p1.SwitchCurrentActionMap(actionMap);
             input_p2.SwitchCurrentActionMap(actionMap);
-            
 
-            
+
+
         }
     }
 
@@ -307,7 +307,7 @@ public class UIManager : MonoBehaviour
     {
         if (_goalTransform != null) // ヌルチェック
         {
-            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f); 
+            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
             _distanceSlider.maxValue = Vector3.Distance(_playerDistance, _goalTransform.position);
         }
 
@@ -329,6 +329,7 @@ public class UIManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
+            Cursor.visible = true;
             _titleFrame.SetActive(false);
             _gameoverFrame.SetActive(true);
         }
