@@ -15,10 +15,12 @@ public class TreeController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _thread = GameObject.FindWithTag("Thread");
+
+        // éÖÇñ≥éã
         Physics.IgnoreCollision(
                 _thread.gameObject.GetComponent<CapsuleCollider>(),
                 gameObject.GetComponent<CapsuleCollider>(),
-                false);
+                true);
     }
 
     private void Update()
@@ -27,18 +29,28 @@ public class TreeController : MonoBehaviour
     }
 
     // -------------------------------- PrivateMethod
+    /// <summary>
+    /// ì|ÇÍÇÈèàóù
+    /// </summary>
     private void FallDown()
     {
         if(transform.childCount == 0 && !_isFallDown)
         {
             _rb.isKinematic = false;
-            _rb.AddForce(transform.forward, ForceMode.Impulse);
+
+            // ñÿÇì|Ç∑
+            _rb.AddForce(
+                transform.forward * _rb.mass,
+                ForceMode.Impulse);
+
             gameObject.GetComponent<CapsuleCollider>().material = null;
+
             _isFallDown = true;
         }
         else if(_isFallDown && transform.localEulerAngles.x >= 90f)
         {
             _rb.isKinematic = true;
+
             gameObject.tag = "Ground";
         }
     }
