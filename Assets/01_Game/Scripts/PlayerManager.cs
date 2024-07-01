@@ -102,6 +102,11 @@ public class PlayerManager : MonoBehaviour
 
         // 子オブジェクト取得
         _player = GetChildren(gameObject);
+        // プレイヤー同士の当たり判定を無視
+        Physics.IgnoreCollision(
+                _player[0].GetComponent<CapsuleCollider>(),
+                _player[1].GetComponent<CapsuleCollider>(),
+                true);
 
         // ライフ数リセット
         _life = _maxLife;
