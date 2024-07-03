@@ -56,6 +56,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-8707341265745166779
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 5582c6b56cdccc04aacb667b4536bb21
+  m_EffectName: Attenuation
+  m_MixLevel: 4f8bcfa5fbf4b7745aaf220127df20fe
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-7653494722023216994
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -376,6 +390,8 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: e126ad61b7717f647b38ef549b6d30c3
   m_Children:
+  - {fileID: 2684220793763772554}
+  - {fileID: -286330348663550239}
   - {fileID: 136804018123485842}
   - {fileID: 416551274729257742}
   m_Volume: b81e2d424beded14981e55cf75850c09
@@ -383,6 +399,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -5180820125251425031}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &-286330348663550239
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pendlum
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: f59e0cd2c7e56bb45beb89e84c8e7ab8
+  m_Children: []
+  m_Volume: b8a3141a09a0b6b44b7539defb1447f9
+  m_Pitch: c99d510bc895a544fa62c74f6b0bcd99
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8707341265745166779}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -471,6 +506,8 @@ AudioMixerController:
     - 61301bcd6d3498942ae916620f843e02
     - a124cf9e30be70a419559c9b194fa12f
     - 305a5a7123cbb8d46819860dfb348023
+    - 3ab2a55f3ff550c43934496206e9c182
+    - f59e0cd2c7e56bb45beb89e84c8e7ab8
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -558,6 +595,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &976349904746504194
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: b0418875c9ebced489dfe4be8e762ae7
+  m_EffectName: Attenuation
+  m_MixLevel: b8ad469e03c1eaf4b980df79d30ac55b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &1038813435695198771
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -587,6 +638,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 7629881340261932979}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &2684220793763772554
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FallingRock
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 3ab2a55f3ff550c43934496206e9c182
+  m_Children: []
+  m_Volume: 96acb439e2be8e04e851bf3e275c1626
+  m_Pitch: 0cae848927bae9f4f90bf4d0103ccc1e
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 976349904746504194}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
