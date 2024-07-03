@@ -102,6 +102,11 @@ public class PlayerManager : MonoBehaviour
 
         // 子オブジェクト取得
         _player = GetChildren(gameObject);
+        // プレイヤー同士の当たり判定初期化
+        Physics.IgnoreCollision(
+                _player[0].GetComponent<CapsuleCollider>(),
+                _player[1].GetComponent<CapsuleCollider>(),
+                false);
 
         // ライフ数リセット
         _life = _maxLife;
@@ -142,10 +147,20 @@ public class PlayerManager : MonoBehaviour
             {
                 if (obj.GetComponent<PlayerController>().Name != _movePlayerName)
                 {
+                    // プレイヤー同士の当たり判定を無視
+                    Physics.IgnoreCollision(
+                            _player[0].GetComponent<CapsuleCollider>(),
+                            _player[1].GetComponent<CapsuleCollider>(),
+                            false);
                     obj.GetComponent<PlayerController>().Attracted(this.destroyCancellationToken);
                     break;
                 }
             }
+            // プレイヤー同士の当たり判定初期化
+            Physics.IgnoreCollision(
+                    _player[0].GetComponent<CapsuleCollider>(),
+                    _player[1].GetComponent<CapsuleCollider>(),
+                    false);
         }
     }
 

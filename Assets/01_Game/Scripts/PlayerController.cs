@@ -43,7 +43,11 @@ public class PlayerController : MonoBehaviour
         if (_isIncapacitated ||
             (PlayerManager.Instance.IsWait &&
             PlayerManager.Instance.MovePlayerName != _name))
+        {
+            // 入力値リセット
+            _inputMove = new Vector2();
             return;
+        }
 
         // 入力値
         _inputMove = context.ReadValue<Vector2>();
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // キャラが待機じゃないか、操作キャラの時かつ動ける時
         if ((!PlayerManager.Instance.IsWait ||
             PlayerManager.Instance.MovePlayerName == _name) &&
             !_isIncapacitated)
