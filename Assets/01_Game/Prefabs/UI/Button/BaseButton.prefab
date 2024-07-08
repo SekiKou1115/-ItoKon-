@@ -118,21 +118,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1160248530374559937}
-  _pressedTextPos: 0
+  _pressedTextPos: -5
   _image: {fileID: 6787687427215467289}
   _normalImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _normalColor: {r: 0, g: 0, b: 0, a: 0}
+  _normalColor: {r: 0, g: 0, b: 0, a: 1}
   _highlightImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _highlightColor: {r: 0.015686275, g: 0, b: 0, a: 0.47058824}
+  _highlightColor: {r: 1, g: 1, b: 1, a: 0.47058824}
   _highlightClip:
     m_PersistentCalls:
       m_Calls: []
   _pressedImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 0.47058824}
+  _pressedColor: {r: 0.015686275, g: 0, b: 0, a: 0.47058824}
   _pressedClip:
     m_PersistentCalls:
       m_Calls: []
-  _selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  _selectedColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &6787687427215467289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,9 +173,9 @@ Animator:
   m_GameObject: {fileID: 6086614112727419152}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 921b6215effe82d439a6104b52fcc577, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3fc90a7f89165f8458b94857b43639bd, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
