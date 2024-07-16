@@ -13,6 +13,7 @@ using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static BaseEnum;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,10 +22,10 @@ public class UIManager : MonoBehaviour
     // ---------------------------- SerializeField
     [Header("全般")]
     [SerializeField, Tooltip("キャンバス")] private GameObject _baseCanvas;
+    
     [SerializeField, Tooltip("デフォルト")] private GameObject _defaultUIFrame;
-
     [SerializeField, Tooltip("タイトル")] private GameObject _titleFrame;
-    [SerializeField, Tooltip("ポーズ")] private GameObject _pauseFrame;
+    [SerializeField, Tooltip("ポーズ")] private  GameObject _pauseFrame;
     [SerializeField, Tooltip("クリア")] private GameObject _clearFrame;
     [SerializeField, Tooltip("ゲームオーバー")] private GameObject _gameoverFrame;
 
@@ -39,8 +40,8 @@ public class UIManager : MonoBehaviour
     [SerializeField, Tooltip("アニメ時間")] private float _heartDuration;
     */
     [SerializeField, Tooltip("スライダーコンポーネント")] private Slider _distanceSlider;
-    [SerializeField, Tooltip("プレイヤー")] private GameObject[] _players;
-    [SerializeField, Tooltip("ゴールの位置")] private Transform _goalTransform;
+    //[SerializeField, Tooltip("プレイヤー")] private GameObject[] _players;
+    //[SerializeField, Tooltip("ゴールの位置")] private Transform _goalTransform;
     /*
     ミニマップ用
     */
@@ -62,15 +63,16 @@ public class UIManager : MonoBehaviour
     //private readonly float FADE_TIME = 2;
     //private readonly float FADE_SCALE = 3;
 
-    private static Vector3 _playerDistance;
+    //private static Vector3 _playerDistance;
 
-    private GameState _state;
+    //private GameState _state;
     private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
 
     public bool _isUIMove = false;
     // ---------------------------- Property
-    public GameState State { get { return _state; } }
-    // HP枠
+    
+    public Slider DistanceSlider { get { return _distanceSlider; } set { _distanceSlider = value; } }
+
 
 
     // ---------------------------- UnityMessage
@@ -82,29 +84,12 @@ public class UIManager : MonoBehaviour
 
     private async void Start()
     {
-        //  初期設定
-        DG.Tweening.DOTween.SetTweensCapacity(tweenersCapacity: 5000, sequencesCapacity: 200);
-
-        //  スタート時タスク
-        var startTask = StartTask(destroyCancellationToken);
-        if (await startTask.SuppressCancellationThrow())
-        { return; }
+        
     }
 
     private void Update()
     {
-        if (_playerDistance != null || _goalTransform != null) // ヌルチェック
-        {
-            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
-            _distanceSlider.value = Vector3.Distance(_playerDistance, _goalTransform.position);
-
-            if (_distanceSlider.value < 5)
-            {
-                divOnClear();
-            }
-        }
-
-
+        
     }
 
 
@@ -175,56 +160,34 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public async UniTask StateChange(GameState state, CancellationToken ct)
+
+    public void SetFrame()
     {
-        switch (state)
+        switch(GameManager.Instance.State)
         {
             case GameState.DEFAULT:
-                Cursor.visible = false;
-                SetState(_defaultUIFrame, DEFAULT_MAP);
-
+                _defaultUIFrame.SetActive(true);
                 break;
 
             case GameState.PAUSE:
-                SetState(_pauseFrame, PAUSE_MAP);
-
+                _pauseFrame.SetActive(true);
                 break;
 
             case GameState.GAMECLEAR:
-                Title._isDoneTitle = false;
                 _defaultUIFrame.SetActive(false);
-                SetState(_clearFrame, EVENT_MAP);
-
+                _clearFrame.SetActive(true);
                 break;
 
             case GameState.GAMEOVER:
-                SetState(_gameoverFrame, EVENT_MAP);
-
+                _gameoverFrame.SetActive(true);
                 break;
 
             case GameState.EVENTS:
-
-                SetState(_titleFrame, EVENT_MAP);
-
+                _titleFrame.SetActive(true);
                 break;
-        }
-
-        void SetState(GameObject frame, string actionMap)
-        {
-            frame.SetActive(true);
-            _state = state;
-
-            var input = PlayerManager.Instance.GetComponent<PlayerInput>();
-            var input_p1 = _players[0].GetComponent<PlayerInput>();
-            var input_p2 = _players[1].GetComponent<PlayerInput>();
-
-            input.SwitchCurrentActionMap(actionMap);
-            input_p1.SwitchCurrentActionMap(actionMap);
-            input_p2.SwitchCurrentActionMap(actionMap);
-
-
 
         }
+        
     }
 
     public async UniTask SceneLoad(int scene)
@@ -243,19 +206,6 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    //public async UniTask StateLoad(GameState state)
-    //{
-    //    RayHit(false);
-
-    //    var tasks = new List<UniTask>()
-    //    {
-    //        // フェードBGM
-    //        // フェード
-    //    };
-    //    await UniTask.WhenAll(tasks);
-
-    //}
-
     public async void ApplicationQuit()
     {
         RayHit(false);
@@ -267,22 +217,19 @@ public class UIManager : MonoBehaviour
         Application.Quit(); //build後にゲームプレイ終了が適用
 #endif
     }
-    public async void Restart()
-    {
-        SceneManager.LoadScene(0);
-    }
+   
 
     public async void divOnClear()
     {
-        if (!UIManager.Instance._isUIMove)
+        if (!Instance._isUIMove)
         {
-            var closeTask = OpenClear(destroyCancellationToken);
+            var closeTask = UIManager.Instance.OpenClear(destroyCancellationToken);
             if (await closeTask.SuppressCancellationThrow()) { return; }
         }
     }
     private async UniTask OpenClear(CancellationToken ct)
     {
-        await UIManager.Instance.StateChange(GameState.GAMECLEAR, ct);
+        await GameManager.Instance.StateChange(GameState.GAMECLEAR, ct);
     }
 
     public async void DivOnOver()
@@ -305,71 +252,9 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private async UniTask InitState(CancellationToken ct)
     {
-        if (_goalTransform != null) // ヌルチェック
-        {
-            _playerDistance = Vector3.Lerp(_players[0].transform.position, _players[1].transform.position, .5f);
-            _distanceSlider.maxValue = Vector3.Distance(_playerDistance, _goalTransform.position);
-        }
-
-        _titleFrame.SetActive(true);
-        _pauseFrame.SetActive(false);
-        _clearFrame.SetActive(false);
-        _gameoverFrame.SetActive(false);
-
-        await StateChange(GameState.EVENTS, ct);
+       // フェード
 
     }
-
-    /// <summary>
-    /// スタートタスク
-    /// </summary>
-    /// <param name="ct"></param>
-    /// <returns></returns>
-    private async UniTask StartTask(CancellationToken ct)
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            Cursor.visible = true;
-            _titleFrame.SetActive(false);
-            _gameoverFrame.SetActive(true);
-        }
-        else
-        {
-            await InitState(ct);
-        }
-
-        /*
-        ////  待機
-        //await DelayTime(_waitTime * 2, ct);
-
-        ////  移動
-        //foreach (var pos in _positions)
-        //{
-        //    await Move(gameObject, pos.position, _duration, _ease, ct);
-        //}
-
-        ////  移動　＆　拡大
-        //var allTasks = new List<UniTask>()
-        //{
-        //    Move(gameObject, _positions[0].position, _duration, _ease, ct),
-        //    DelayScaleTask(ct),
-        //};
-        ////  待機拡大
-        //async UniTask DelayScaleTask(CancellationToken ct)
-        //{
-        //    await DelayTime(_duration / 2, ct);
-        //    await ScaleTask(gameObject, _scale, _duration / 2, _ease, ct);
-        //}
-
-        //await UniTask.WhenAll(allTasks);
-        */
-    }
-
-    //private async UniTask GoalTask(CancellationToken ct)
-    //{
-    //        await UniTask.WaitUntil(() => _distanceSlider.value <5);
-    //        await OpenClear(ct);
-    //}
 
     /// <summary>
     /// 接触判定変更
