@@ -45,6 +45,7 @@ public class Title : MonoBehaviour
 
     private void Awake()
     {
+
     }
 
     // ---------------------------- PublicMethod
@@ -122,7 +123,7 @@ public class Title : MonoBehaviour
         _isDoneTitle = true;
 
         // ó‘Ô‘JˆÚ
-        await UIManager.Instance.StateChange(GameState.DEFAULT, ct);
+        await GameManager.Instance.StateChange(GameState.DEFAULT, ct);
 
     }
 

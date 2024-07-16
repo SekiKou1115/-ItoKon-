@@ -54,7 +54,6 @@ public class Pause : MonoBehaviour
     {
         if (!UIManager.Instance._isUIMove)
         {
-            
             var closeTask = ClosePause(destroyCancellationToken);
             if (await closeTask.SuppressCancellationThrow()) { return; }
         }
@@ -78,7 +77,7 @@ public class Pause : MonoBehaviour
     {
         Cursor.visible = true;
         // ó‘Ô‘JˆÚ
-        await UIManager.Instance.StateChange(GameState.PAUSE, ct);
+        await GameManager.Instance.StateChange(GameState.PAUSE, ct);
         _pauseBack.SetActive(true);
         Time.timeScale = 0;
         //  ˆÚ“®
@@ -89,7 +88,7 @@ public class Pause : MonoBehaviour
     {
         Cursor.visible = false;
         // ó‘Ô‘JˆÚ
-        await UIManager.Instance.StateChange(GameState.DEFAULT, ct);
+        await GameManager.Instance.StateChange(GameState.DEFAULT, ct);
         _pauseBack.SetActive(false); 
         Time.timeScale = 1.0f;
         //  ˆÚ“®
