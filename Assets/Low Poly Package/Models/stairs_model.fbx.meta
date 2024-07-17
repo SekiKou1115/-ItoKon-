@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 5af9a70fc59f1424ba972fecfc853977
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: 1
+    100002: 1_2
+    100004: 1_3
+    100006: 2
+    100008: 2_2
+    100010: 2_3
+    100012: 3
+    100014: 3_2
+    100016: 3_3
+    100018: 4
+    100020: 4_2
+    100022: 4_3
+    100024: 5
+    100026: 5_2
+    100028: 6
+    100030: 7
+    100032: border
+    100034: rocks
+    100036: stairs
+    100038: //RootNode
+    400000: 1
+    400002: 1_2
+    400004: 1_3
+    400006: 2
+    400008: 2_2
+    400010: 2_3
+    400012: 3
+    400014: 3_2
+    400016: 3_3
+    400018: 4
+    400020: 4_2
+    400022: 4_3
+    400024: 5
+    400026: 5_2
+    400028: 6
+    400030: 7
+    400032: border
+    400034: rocks
+    400036: stairs
+    400038: //RootNode
+    2300000: 1
+    2300002: 1_2
+    2300004: 1_3
+    2300006: 2
+    2300008: 2_2
+    2300010: 2_3
+    2300012: 3
+    2300014: 3_2
+    2300016: 3_3
+    2300018: 4
+    2300020: 4_2
+    2300022: 4_3
+    2300024: 5
+    2300026: 5_2
+    2300028: 6
+    2300030: 7
+    3300000: 1
+    3300002: 1_2
+    3300004: 1_3
+    3300006: 2
+    3300008: 2_2
+    3300010: 2_3
+    3300012: 3
+    3300014: 3_2
+    3300016: 3_3
+    3300018: 4
+    3300020: 4_2
+    3300022: 4_3
+    3300024: 5
+    3300026: 5_2
+    3300028: 6
+    3300030: 7
+    4300000: 1
+    4300002: 2
+    4300004: 3
+    4300006: 4
+    4300008: 5
+    4300010: 1_2
+    4300012: 2_2
+    4300014: 3_2
+    4300016: 4_2
+    4300018: 1_3
+    4300020: 2_3
+    4300022: 3_3
+    4300024: 4_3
+    4300026: 5_2
+    4300028: 6
+    4300030: 7
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: border
+    second: {fileID: 2100000, guid: 60e0e64cab4cc2c47ba7f5735b842173, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock
+    second: {fileID: 2100000, guid: ed3105b1150f248dc9a167973b53ca1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stair
+    second: {fileID: 2100000, guid: 9f9472fdc30518f44967d1c9a7eed457, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
