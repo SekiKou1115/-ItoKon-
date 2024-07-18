@@ -89,6 +89,17 @@ public class PlayerController : MonoBehaviour
                  .ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: ct);
     }
 
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    public void Damage()
+    {
+        PlayerManager.Instance.Damage();
+        PlayerManager.Instance.OnSwitch();
+        Attracted(this.destroyCancellationToken);
+        _isIncapacitated = true;
+    }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -179,10 +190,7 @@ public class PlayerController : MonoBehaviour
         // ジャンプした位置が
         if (_dropDistance - gameObject.transform.position.y > _maxDropDistance)
         {
-            PlayerManager.Instance.Damage();
-            PlayerManager.Instance.OnSwitch();
-            Attracted(this.destroyCancellationToken);
-            _isIncapacitated = true;
+            Damage();
         }
     }
 }
