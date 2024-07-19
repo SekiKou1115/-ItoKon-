@@ -137,7 +137,7 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// ˆø‚«Šñ‚¹‚é
     /// </summary>
-    private void Attract()
+    private async void Attract()
     {
         var distance = Vector3.Distance(_player[0].transform.position, _player[1].transform.position);
         Debug.Log(distance);
@@ -152,7 +152,8 @@ public class PlayerManager : MonoBehaviour
                             _player[0].GetComponent<CapsuleCollider>(),
                             _player[1].GetComponent<CapsuleCollider>(),
                             false);
-                    obj.GetComponent<PlayerController>().Attracted(this.destroyCancellationToken);
+                    var attractedTask = obj.GetComponent<PlayerController>().Attracted(this.destroyCancellationToken);
+                    if (await attractedTask.SuppressCancellationThrow()) { return; }
                     break;
                 }
             }

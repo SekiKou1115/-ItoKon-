@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.PlayerSettings;
@@ -18,6 +19,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("ジャンプ開始速度")] private float _jumpSpeed;
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
     [SerializeField, Tooltip("相方")] private GameObject _partner;
+
+    [Header("Audio")]
+    [SerializeField, Tooltip("ダメージ")] private UnityEvent _seDamage;
+    [SerializeField, Tooltip("着地")] private UnityEvent _seLand;
+    [SerializeField, Tooltip("引き寄せ")] private UnityEvent _sePull;
+    [SerializeField, Tooltip("移動")] private UnityEvent _seWalkGround;
+    [SerializeField, Tooltip("移動")] private UnityEvent _seWalkStone;
 
 
     private bool _isHitGround; // 地面に触れているか判定
@@ -80,9 +88,10 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 引き寄せられる
     /// </summary>
-    public async void Attracted(CancellationToken ct)
+    public async UniTask Attracted(CancellationToken ct)
     {
-        Debug.Log("引き寄せられる");
+        // 引き寄せ音
+        _sePull?.Invoke();
         await transform.DOMove(_partner.transform.position, 5)
                  .SetLink(gameObject)
                  .SetEase(Ease.OutExpo)
@@ -92,11 +101,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// ダメージ処理
     /// </summary>
-    public void Damage()
+    public async void Damage()
     {
         PlayerManager.Instance.Damage();
         PlayerManager.Instance.OnSwitch();
-        Attracted(this.destroyCancellationToken);
+        var attractedTask = Attracted(this.destroyCancellationToken);
+        if (await attractedTask.SuppressCancellationThrow()) { return; }
         _isIncapacitated = true;
     }
 
@@ -128,6 +138,8 @@ public class PlayerController : MonoBehaviour
         {
             // 落下処理
             LandingDamage();
+            // 着地音
+            _seLand?.Invoke();
         }
         // 相方に触れたとき
         else if (collision.gameObject.CompareTag("Player"))
@@ -178,6 +190,12 @@ public class PlayerController : MonoBehaviour
                 targetRotation,
                 _rotateSpeed * Time.deltaTime);
         }
+
+        if (moveForward != Vector3.zero)
+        {
+            // 移動音
+            _seWalkStone?.Invoke();
+        }
     }
 
     /// <summary>
@@ -186,9 +204,9 @@ public class PlayerController : MonoBehaviour
     private void LandingDamage()
     {
         var dis = _dropDistance - gameObject.transform.position.y;
-        Debug.Log(dis);
+
         // ジャンプした位置が
-        if (_dropDistance - gameObject.transform.position.y > _maxDropDistance)
+        if (dis > _maxDropDistance)
         {
             Damage();
         }
