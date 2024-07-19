@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
@@ -25,6 +26,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, Tooltip("非選択時優先度")] private int _unselectedPriority = 0;
     [SerializeField, Tooltip("選択時優先度")] private int _selectedPriority = 10;
 
+    [Header("Audio")]
+    [SerializeField, Tooltip("切り替え")] private UnityEvent _seChange;
+    [SerializeField, Tooltip("引き寄せ")] private UnityEvent _sePull;
 
     private GameObject[] _player; // 子オブジェクト
     private bool _isWait = true; // 追従待機判断
@@ -73,6 +77,9 @@ public class PlayerManager : MonoBehaviour
         {
             _movePlayerName = Name.BRIDE;
         }
+
+        // 切り替え音
+        _seChange?.Invoke();
     }
 
     /// <summary>
@@ -140,28 +147,21 @@ public class PlayerManager : MonoBehaviour
     private async void Attract()
     {
         var distance = Vector3.Distance(_player[0].transform.position, _player[1].transform.position);
-        Debug.Log(distance);
+
         if (distance >= _maxAttract)
         {
             foreach (var obj in _player)
             {
                 if (obj.GetComponent<PlayerController>().Name != _movePlayerName)
                 {
-                    // プレイヤー同士の当たり判定を無視
-                    Physics.IgnoreCollision(
-                            _player[0].GetComponent<CapsuleCollider>(),
-                            _player[1].GetComponent<CapsuleCollider>(),
-                            false);
+                    // 引き寄せ音
+                    _sePull?.Invoke();
+
                     var attractedTask = obj.GetComponent<PlayerController>().Attracted(this.destroyCancellationToken);
                     if (await attractedTask.SuppressCancellationThrow()) { return; }
                     break;
                 }
             }
-            // プレイヤー同士の当たり判定初期化
-            Physics.IgnoreCollision(
-                    _player[0].GetComponent<CapsuleCollider>(),
-                    _player[1].GetComponent<CapsuleCollider>(),
-                    false);
         }
     }
 
