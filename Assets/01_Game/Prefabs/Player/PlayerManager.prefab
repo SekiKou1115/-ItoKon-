@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 9123555010915170472}
   - component: {fileID: 4994387574845494876}
   - component: {fileID: 2325320772100595316}
+  - component: {fileID: 7137262578566764011}
   m_Layer: 7
   m_Name: Player_Bride
   m_TagString: Player
@@ -688,6 +689,30 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7137262578566764011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767918362542567046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de208035ed123614d9c509155810e742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plat: {fileID: 0}
+  center: {fileID: 0}
+  m_isGround: 0
+  origin: {x: 0, y: 0, z: 0}
+  radius: 0.5
+  footPos: -1
+  groundCheckDistance_onPlat: 0.5
+  groundCheckDistance_up: 0.2
+  groundCheckDistance_down: 0.3
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 83
 --- !u!1 &6987891211183325558
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +726,7 @@ GameObject:
   - component: {fileID: 1421273396787980499}
   - component: {fileID: 3490034700334975342}
   - component: {fileID: 9162002252624085894}
+  - component: {fileID: 7081329604284823861}
   m_Layer: 7
   m_Name: Player_Groom
   m_TagString: Player
@@ -955,6 +981,30 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7081329604284823861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987891211183325558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de208035ed123614d9c509155810e742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plat: {fileID: 0}
+  center: {fileID: 0}
+  m_isGround: 0
+  origin: {x: 0, y: 0, z: 0}
+  radius: 0.5
+  footPos: -1
+  groundCheckDistance_onPlat: 0.5
+  groundCheckDistance_up: 0.2
+  groundCheckDistance_down: 0.3
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 83
 --- !u!1 &7243979976873268758
 GameObject:
   m_ObjectHideFlags: 0
