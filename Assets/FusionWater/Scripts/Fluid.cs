@@ -13,6 +13,8 @@ namespace Fusion.Fluid
 
         public float angularDrag = 1f;
 
+        [SerializeField, Tooltip("落水時のエフェクト")] private GameObject _effect;
+
         public Collider coll { get; private set; }
 
         private void Start()
@@ -26,6 +28,9 @@ namespace Fusion.Fluid
             {
                 fluidInteractor.EnterFluid(this);
             }
+            // 衝突位置を取得する
+            Vector3 hitPos = other.ClosestPointOnBounds(other.transform.position);
+            Instantiate(_effect, hitPos, Quaternion.identity);
         }
 
         private void OnTriggerExit(Collider other)
