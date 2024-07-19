@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
     [SerializeField, Tooltip("相方")] private GameObject _partner;
 
+    [Header("Effect")]
+    [SerializeField, Tooltip("移動")] private ParticleSystem _moveEffect;
+
     [Header("Audio")]
     [SerializeField, Tooltip("ダメージ")] private UnityEvent _seDamage;
     [SerializeField, Tooltip("着地")] private UnityEvent _seLand;
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
         // 入力値
         _inputMove = context.ReadValue<Vector2>();
+        Instantiate(_moveEffect, gameObject.transform);
     }
 
     /// <summary>
