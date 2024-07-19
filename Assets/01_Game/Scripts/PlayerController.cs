@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static BaseEnum;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.StandaloneInputModule;
@@ -19,12 +21,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
     [SerializeField, Tooltip("相方")] private GameObject _partner;
 
+    [Header("Effect")]
+    [SerializeField, Tooltip("移動")] private ParticleSystem _moveEffect;
+
+    [Header("Audio")]
+    [SerializeField, Tooltip("ダメージ")] private UnityEvent _seDamage;
+    [SerializeField, Tooltip("着地")] private UnityEvent _seLand;
+    [SerializeField, Tooltip("移動")] private AudioSource _seWalkGround;
+    [SerializeField, Tooltip("移動")] private AudioSource _seWalkStone;
+
 
     private bool _isHitGround; // 地面に触れているか判定
     private Rigidbody _rb;
     private Vector2 _inputMove;
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
+    private bool _Attracted; // 引っ張られているか判定
 
     public PlayerManager.Name Name => _name;
     public bool IsIncapacitated
@@ -51,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
         // 入力値
         _inputMove = context.ReadValue<Vector2>();
+        Instantiate(_moveEffect, gameObject.transform);
     }
 
     /// <summary>
@@ -80,24 +93,48 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 引き寄せられる
     /// </summary>
-    public async void Attracted(CancellationToken ct)
+    public async UniTask Attracted(CancellationToken ct)
     {
-        Debug.Log("引き寄せられる");
+        _Attracted = true;
+        // プレイヤー同士の当たり判定初期化
+        Physics.IgnoreCollision(
+                gameObject.GetComponent<CapsuleCollider>(),
+                _partner.GetComponent<CapsuleCollider>(),
+                true);
+
         await transform.DOMove(_partner.transform.position, 5)
                  .SetLink(gameObject)
                  .SetEase(Ease.OutExpo)
                  .ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: ct);
+
+        // プレイヤー同士の当たり判定初期化
+        Physics.IgnoreCollision(
+                gameObject.GetComponent<CapsuleCollider>(),
+                _partner.GetComponent<CapsuleCollider>(),
+                false);
+        _Attracted = false;
     }
 
     /// <summary>
     /// ダメージ処理
     /// </summary>
-    public void Damage()
+    public async void Damage()
     {
-        PlayerManager.Instance.Damage();
-        PlayerManager.Instance.OnSwitch();
-        Attracted(this.destroyCancellationToken);
-        _isIncapacitated = true;
+        // 行動不能じゃない時、引き寄せられてない時
+        if (!_isIncapacitated && !_Attracted)
+        {
+            // ダメージ音
+            _seDamage?.Invoke();
+            _isIncapacitated = true;
+
+            if (PlayerManager.Instance.MovePlayerName == _name)
+            {
+                PlayerManager.Instance.OnSwitch();
+            }
+            PlayerManager.Instance.Damage();
+            var attractedTask = Attracted(this.destroyCancellationToken);
+            if (await attractedTask.SuppressCancellationThrow()) { return; }
+        }
     }
 
     private void Awake()
@@ -120,7 +157,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         // 地面に触れたとき
@@ -128,6 +164,11 @@ public class PlayerController : MonoBehaviour
         {
             // 落下処理
             LandingDamage();
+            if (GameManager.Instance.State == GameState.DEFAULT)
+            {
+                // 着地音
+                _seLand?.Invoke();
+            }
         }
         // 相方に触れたとき
         else if (collision.gameObject.CompareTag("Player"))
@@ -152,6 +193,9 @@ public class PlayerController : MonoBehaviour
         {
             _dropDistance = gameObject.transform.position.y;
             _isHitGround = false;
+
+            // 移動音
+            _seWalkStone?.Stop();
         }
     }
 
@@ -178,6 +222,19 @@ public class PlayerController : MonoBehaviour
                 targetRotation,
                 _rotateSpeed * Time.deltaTime);
         }
+
+        if (moveForward != Vector3.zero &&
+            !_seWalkStone.isPlaying &&
+            _isHitGround)
+        {
+            // 移動音
+            _seWalkStone?.Play();
+        }
+        else if (moveForward == Vector3.zero)
+        {
+            // 移動音
+            _seWalkStone?.Stop();
+        }
     }
 
     /// <summary>
@@ -186,9 +243,9 @@ public class PlayerController : MonoBehaviour
     private void LandingDamage()
     {
         var dis = _dropDistance - gameObject.transform.position.y;
-        Debug.Log(dis);
-        // ジャンプした位置が
-        if (_dropDistance - gameObject.transform.position.y > _maxDropDistance)
+
+        // ジャンプした位置が落ちた位置より低い時
+        if (dis > _maxDropDistance)
         {
             Damage();
         }
