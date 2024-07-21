@@ -37,11 +37,18 @@ public class SolverEventHandler : MonoBehaviour
                 if (col != null)
                 {
                     // do something with the collider.
-                    var component = col.GetComponent<TreeHitChecker>();
+                    var component1 = col.GetComponent<TreeHitChecker>();
 
-                    if(component != null)
+                    if (component1 != null)
                     {
-                        component.OnMyDestroy();
+                        component1.OnMyDestroy();
+                    }
+
+                    var component2 = col.GetComponent<RockController>();
+
+                    if (component2 != null)
+                    {
+                        component2.OnPush();
                     }
                 }
             }
