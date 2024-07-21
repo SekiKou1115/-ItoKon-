@@ -50,6 +50,13 @@ public class SolverEventHandler : MonoBehaviour
                     {
                         component2.OnPush();
                     }
+
+                    var component3 = col.GetComponent<LeverHitCheck>();
+
+                    if(component3 != null)
+                    {
+                        component3.OnChange();
+                    }
                 }
             }
         }
