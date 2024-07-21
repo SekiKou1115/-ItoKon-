@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, Tooltip("現在のライフ")] private int _life;
     [SerializeField, Tooltip("最大ライフ")] private int _maxLife;
     [SerializeField, Tooltip("引き寄せ始める距離")] private float _maxAttract;
+    [SerializeField, Tooltip("待機中の動摩擦")] private float _waitDynFriction;
+    [SerializeField, Tooltip("行動中の動摩擦")] private float _moveDynFriction;
 
     [Header("カメラ")]
     [SerializeField, Tooltip("カメラ一覧")] private CinemachineFreeLook[] _freeLookCameraList;
@@ -33,6 +35,7 @@ public class PlayerManager : MonoBehaviour
     private GameObject[] _player; // 子オブジェクト
     private bool _isWait = true; // 追従待機判断
     private int _currentCamera = 0; // 選択中のバーチャルカメラのインデックス
+    private Collider _coll; // コライダーのマテリアル変えるよう
 
     public bool IsWait => _isWait;
     public Name MovePlayerName
@@ -49,6 +52,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!context.performed)
             return;
+
         OnSwitch();
     }
     public void OnSwitch()
@@ -72,10 +76,24 @@ public class PlayerManager : MonoBehaviour
         if (_movePlayerName == Name.BRIDE)
         {
             _movePlayerName = Name.GROOM;
+
+            // 行動開始するとき摩擦力を消す
+            _coll = _player[0].GetComponent<Collider>();
+            _coll.material.dynamicFriction = _moveDynFriction;
+            // 待機になるとき摩擦力を消す
+            _coll = _player[1].GetComponent<Collider>();
+            _coll.material.dynamicFriction = _waitDynFriction;
         }
         else if (_movePlayerName == Name.GROOM)
         {
             _movePlayerName = Name.BRIDE;
+
+            // 行動開始するとき摩擦力を消す
+            _coll = _player[1].GetComponent<Collider>();
+            _coll.material.dynamicFriction = _moveDynFriction;
+            // 待機になるとき摩擦力を消す
+            _coll = _player[0].GetComponent<Collider>();
+            _coll.material.dynamicFriction = _waitDynFriction;
         }
 
         // 切り替え音
@@ -128,6 +146,16 @@ public class PlayerManager : MonoBehaviour
             _freeLookCameraList[i].Priority =
                 (i == _currentCamera ? _selectedPriority : _unselectedPriority);
         }
+    }
+
+    private void Start()
+    {
+        // 行動開始するとき摩擦力を消す
+        _coll = _player[0].GetComponent<Collider>();
+        _coll.material.dynamicFriction = _moveDynFriction;
+        // 待機になるとき摩擦力を消す
+        _coll = _player[1].GetComponent<Collider>();
+        _coll.material.dynamicFriction = _waitDynFriction;
     }
 
     private void Update()
