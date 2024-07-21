@@ -8,6 +8,7 @@ public class FallingPlatform : MonoBehaviour
     [SerializeField, Tooltip("落ちるまでの時間")] private float _fallDelay = 1f; // Delay 時間
     [SerializeField, Tooltip("消えるまでの時間")] private float _destroyDelay = 2f; // Destroy 時間
     [SerializeField, Tooltip("復活までの時間")] private float _recoveryDelay = 1f; // Recovery 時間
+    [SerializeField, Tooltip("接地されてる地面")] private GameObject _ground;
 
     private Rigidbody _rb;
     private Vector3 _spawnPosition; // 位置とスケール記憶変数
@@ -18,6 +19,10 @@ public class FallingPlatform : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+        Physics.IgnoreCollision(
+                gameObject.GetComponent<BoxCollider>(),
+                _ground.GetComponent<MeshCollider>(),
+                true);
     }
 
     private async void OnCollisionEnter(Collision other)
