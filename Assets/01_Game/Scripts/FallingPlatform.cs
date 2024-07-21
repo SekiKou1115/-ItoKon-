@@ -1,45 +1,56 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    [SerializeField] private float fallDelay = 1f; // Delay 時間
-    [SerializeField] private float destroyDelay = 2f; // Destroy 時間
-    private Rigidbody rb;
-    private bool hasFallen = false;
-    private ObjectRespawn _respawner;
-    private Vector3 spawnPosition;
+    [SerializeField, Tooltip("落ちるまでの時間")] private float _fallDelay = 1f; // Delay 時間
+    [SerializeField, Tooltip("消えるまでの時間")] private float _destroyDelay = 2f; // Destroy 時間
+    [SerializeField, Tooltip("復活までの時間")] private float _recoveryDelay = 1f; // Recovery 時間
+    [SerializeField, Tooltip("接地されてる地面")] private GameObject _ground;
 
-    void Start()
+    private Rigidbody _rb;
+    private Vector3 _spawnPosition; // 位置とスケール記憶変数
+    private bool _isFallen = false;
+
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        _respawner = FindObjectOfType<ObjectRespawn>();
+        _rb = GetComponent<Rigidbody>();
+        _rb.isKinematic = true;
+        Physics.IgnoreCollision(
+                gameObject.GetComponent<BoxCollider>(),
+                _ground.GetComponent<MeshCollider>(),
+                true);
     }
 
-    void OnCollisionEnter(Collision other)
+    private async void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && !hasFallen)
+        if (other.gameObject.CompareTag("Player") && !_isFallen)
         {
-            spawnPosition = transform.position; // 現在のPosを保持
-            Invoke("Fall", fallDelay);
-            Invoke("DestroyPlatform", fallDelay + destroyDelay);
-            hasFallen = true;
+            _isFallen = true;
+            _spawnPosition = gameObject.transform.position; // 現在のPosを保持
+            var fallTask = Fall(destroyCancellationToken);
+            if (await fallTask.SuppressCancellationThrow()) { return; }
+            _isFallen = false;
         }
     }
 
-    void Fall()
+    private async UniTask Fall(CancellationToken ct)
     {
-        rb.isKinematic = false; 
-    }
+        // 触ってから落ちるまで
+        await UniTask.Delay(TimeSpan.FromSeconds(_fallDelay), cancellationToken: ct);
+        _rb.isKinematic = false;
 
-    void DestroyPlatform()
-    {
-       
-        
-        if (_respawner != null)
-        {
-            _respawner.RespawnPlatform(spawnPosition); // respawn managerの関数を呼び出す
-        }
-        Destroy(gameObject); // Destroy 
+        // 落ち始めてから消えるまで
+        await UniTask.Delay(TimeSpan.FromSeconds(_destroyDelay), cancellationToken: ct);
+        gameObject.SetActive(false);
+
+        // 復活するまで
+        await UniTask.Delay(TimeSpan.FromSeconds(_recoveryDelay), cancellationToken: ct);
+        gameObject.SetActive(true);
+        _rb.isKinematic = true;
+        gameObject.transform.position = _spawnPosition;
     }
 }
