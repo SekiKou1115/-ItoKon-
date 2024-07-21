@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1246663013196209257}
+  - {fileID: 2864871587931569654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &3765961288021057021
@@ -54,7 +54,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1113032674807287740
+--- !u!1001 &8076109253689783148
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -62,71 +62,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7931929044293188883}
     m_Modifications:
-    - target: {fileID: 1546019560104610159, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-      propertyPath: m_Name
-      value: catholic temple with environment
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.1
+      value: -8.14
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    - target: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6673731808671683616, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
+      propertyPath: m_Name
+      value: catholic temple
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4528944283840941201, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 1490786773262642055, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 8273339840517181464, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 1699137356557619605, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 7236718552929882742, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 8222453429471365620, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 4450930795011604635, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 8644737997855391176, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 6834686304248304330, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 2033281151096064245, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 6259822563599438484, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 2604935563229250550, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 6346518972668576539, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-    - {fileID: 7605569951903088418, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
---- !u!4 &1246663013196209257 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
+--- !u!4 &2864871587931569654 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2179531344762573781, guid: 91c120bd6c4a44ac285744d0fa8a677a, type: 3}
-  m_PrefabInstance: {fileID: 1113032674807287740}
+  m_CorrespondingSourceObject: {fileID: 6329258507055500954, guid: fbe05b46f5886488fa880462b6a9061d, type: 3}
+  m_PrefabInstance: {fileID: 8076109253689783148}
   m_PrefabAsset: {fileID: 0}
