@@ -2,41 +2,29 @@ using UnityEngine;
 
 public class LeverController : MonoBehaviour
 {
+    // -------------------------------- SerializeField
+    [SerializeField] private GameObject _activedPos;
+
     // -------------------------------- PrivateField
     private bool[] _barFlag = new bool[2];
     private GameObject _point;
     private bool _isActived = false;
     private LeverHitCheck[] _pointsArray = new LeverHitCheck[2];
 
-     private GameObject _thread;
-    [SerializeField] private GameObject _activedPos;
-
     // -------------------------------- UnityMassege
     private void Start()
     {
         _point = transform.parent.gameObject;
-        _thread = GameObject.FindWithTag("Thread");
+
         for (int i = 0; i <= 1; i++)
         {
             _pointsArray[i] = transform.GetChild(i).GetComponent<LeverHitCheck>();
             _pointsArray[i].ID = i;
         }
-
-        // 糸を無視
-        Physics.IgnoreCollision(
-                _thread.gameObject.GetComponent<CapsuleCollider>(),
-                gameObject.GetComponent<CapsuleCollider>(),
-                true);
-    }
-
-    private void Update()
-    {
-        //TwitchOn();
     }
 
     // -------------------------------- PbulicMethod
-
-    public void CheckPoint(int value,bool isInPoint)
+    public void CheckPoint(int value, bool isInPoint)
     {
         if(isInPoint)
         {
@@ -56,7 +44,6 @@ public class LeverController : MonoBehaviour
     }
 
     // -------------------------------- PrivateMethod
-    
     /// <summary>
     /// アクティブ処理
     /// </summary>

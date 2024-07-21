@@ -8,19 +8,11 @@ public class TreeController : MonoBehaviour
     // -------------------------------- PrivateField
     private bool _isFallDown = false;
     private Rigidbody _rb;
-    private GameObject _thread;
 
     // -------------------------------- UnityMassege
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _thread = GameObject.FindWithTag("Thread");
-
-        // Ž…‚ð–³Ž‹
-        Physics.IgnoreCollision(
-                _thread.gameObject.GetComponent<CapsuleCollider>(),
-                gameObject.GetComponent<CapsuleCollider>(),
-                true);
     }
 
     private void Update()

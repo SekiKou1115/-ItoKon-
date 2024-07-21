@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4497367192734283932}
   - component: {fileID: 6847631144058064585}
   - component: {fileID: 3945128465514991612}
+  - component: {fileID: 3721756625559214416}
   m_Layer: 6
   m_Name: Thread
   m_TagString: Thread
@@ -160,6 +161,18 @@ MonoBehaviour:
   solvers:
   - {fileID: 6847631144058064585}
   substeps: 4
+--- !u!114 &3721756625559214416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877362259104568539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d64645a78c30a344ab225b9aeb0a2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029538809057800913
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,8 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bab155b8e00f3408f98163b59b5b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player1: {fileID: 0}
-  _player2: {fileID: 0}
+  _groom: {fileID: 0}
+  _bride: {fileID: 0}
   _groomOpa: {fileID: 6961800062120370161}
   _brideOpa: {fileID: 670892561693182884}
   _maxDist: 5
