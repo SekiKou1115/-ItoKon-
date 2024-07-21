@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class TreeHitChecker : MonoBehaviour
 {
-    // -------------------------------- UnityMassege
-    private void OnTriggerEnter(Collider other)
+    // -------------------------------- PublicMethod
+    public void OnMyDestroy()
     {
-        if(other.gameObject.CompareTag("Thread"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(this.gameObject);
     }
 }

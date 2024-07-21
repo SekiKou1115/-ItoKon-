@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4931242611997294226}
   - component: {fileID: 2911009550117389998}
   - component: {fileID: 183808978106122535}
+  - component: {fileID: 7802516193221583808}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -121,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215520162210951982}
   serializedVersion: 4
-  m_Mass: 10000
+  m_Mass: 1000000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -152,6 +153,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f22689b96270a40be494d6836b87e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7802516193221583808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2215520162210951982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinematicForParticles: 0
 --- !u!1 &2969926964361092712
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +179,7 @@ GameObject:
   - component: {fileID: 4435010121082060718}
   - component: {fileID: 4290398111088514124}
   - component: {fileID: 7148026303685562634}
+  - component: {fileID: 6376735757386968321}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -270,6 +285,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac8fb17664406408128a9f6354b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6376735757386968321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969926964361092712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 4290398111088514124}
+  m_DistanceField: {fileID: 0}
 --- !u!1 &4532853020827586067
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +315,7 @@ GameObject:
   - component: {fileID: 1236710009915350004}
   - component: {fileID: 5784502748363741345}
   - component: {fileID: 4783296044054703851}
+  - component: {fileID: 5335888370467830652}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -388,6 +421,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac8fb17664406408128a9f6354b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5335888370467830652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4532853020827586067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 5784502748363741345}
+  m_DistanceField: {fileID: 0}
 --- !u!1 &5459536612178953439
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +451,7 @@ GameObject:
   - component: {fileID: 1258759949826426993}
   - component: {fileID: 7607455871123545645}
   - component: {fileID: 6625411874347523312}
+  - component: {fileID: 7037268677095711685}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -506,6 +557,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac8fb17664406408128a9f6354b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7037268677095711685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459536612178953439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 7607455871123545645}
+  m_DistanceField: {fileID: 0}
 --- !u!1 &6676455605368099696
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +587,7 @@ GameObject:
   - component: {fileID: 4640505929882329201}
   - component: {fileID: 2599135424054908093}
   - component: {fileID: 5360455760881054280}
+  - component: {fileID: 733407139619114313}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -624,3 +693,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ac8fb17664406408128a9f6354b2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &733407139619114313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6676455605368099696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 2599135424054908093}
+  m_DistanceField: {fileID: 0}
