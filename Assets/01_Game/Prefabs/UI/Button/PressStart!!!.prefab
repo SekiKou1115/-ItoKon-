@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 1, g: 0, b: 0.66094923, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -83,9 +83,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 84830093965931188, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
       propertyPath: m_text
-      value: Press Start
+      value: "\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2515648102493707508, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160248530374559937, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3165637887054233831, guid: bc4e615114d8a5a4a975462da2677c04, type: 3}
       propertyPath: m_Enabled

@@ -1575,14 +1575,14 @@ MonoBehaviour:
   m_text: OFF
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
-  m_sharedMaterial: {fileID: 2515648102493707508, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 04f242907fe687a489a7e6b1d16c6bee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1908,14 +1908,14 @@ MonoBehaviour:
   m_text: ON
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
-  m_sharedMaterial: {fileID: 2515648102493707508, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 04f242907fe687a489a7e6b1d16c6bee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7060,6 +7060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressStart!!!
       objectReference: {fileID: 0}
+    - target: {fileID: 2083158025278005980, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2256389943974408196, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7157,12 +7161,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_text
+      value: "\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
       propertyPath: m_fontSize
       value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
       propertyPath: m_fontSizeBase
       value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2515648102493707508, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962888001318422788, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7580950212890444066, guid: 68536118d72f7fc47a9db8156c0e135b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
