@@ -9,7 +9,7 @@ public class RiverReSpawn : MonoBehaviour
     // ---------------------------- SerializeField
 
     // ---------------------------- Field
-    [SerializeField] private RiverManager _parent;
+    [SerializeField] private RiverManager _riverManager;
 
     // ---------------------------- Property
 
@@ -17,14 +17,15 @@ public class RiverReSpawn : MonoBehaviour
 
     private void Start()
     {
-        _parent = GetComponentInParent<RiverManager>();
+        if(!_riverManager)
+        _riverManager = GetComponentInParent<RiverManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            _parent.Respawn(other);
+            _riverManager.Respawn(other);
         }
     }
 
