@@ -31,7 +31,7 @@ public class SolverEventHandler : MonoBehaviour
         foreach (Oni.Contact contact in e.contacts)
         {
             // if this one is an actual collision:
-            if (contact.distance < 0.01f)
+            if (contact.distance < 0.01f && contact.bodyB >= 0f)
             {
                 ObiColliderBase col = world.colliderHandles[contact.bodyB].owner;
                 if (col != null)
