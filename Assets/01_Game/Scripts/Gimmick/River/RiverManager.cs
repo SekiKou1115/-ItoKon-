@@ -1,17 +1,19 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class RiverManager : MonoBehaviour
 {
     // ---------------------------- SerializeField
-    [SerializeField, Tooltip("流れのパワー(乗算)")] private float _flowPower = .5f;
-
     [SerializeField, Tooltip("出現地点")] GameObject _spawnPoint;
     [SerializeField, Tooltip("スポーンのX範囲")] private float _randX = 2;
     [SerializeField, Tooltip("スポーンのZ範囲")] private float _randZ = 2;
 
+    [SerializeField, Tooltip("リスポーンタイム")] private float _waitTime = 2.0f;
 
     // ---------------------------- Field
 
@@ -19,55 +21,41 @@ public class RiverManager : MonoBehaviour
 
     // ---------------------------- UnityMessage
 
-    private void OnTriggerStay(Collider other)
+    private void Start()
     {
-        RiverFlow(other);
+        _randX *= 0.5f;
+        _randZ *= 0.5f;
     }
 
     // ---------------------------- PublicMethod
 
-    public void Respawn(Collider other)
+    public async void Respawn(Collider other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            // 触れたやつを一時格納
-            var _tf = other.GetComponent<Transform>();
-            
-            // 行き先を計算
-            Vector3 Pos = _spawnPoint.transform.position;
-            Pos.x += Random.Range(-_randX, _randX);
-            Pos.z += Random.Range(-_randZ, _randZ);
+        // 触れたやつを一時格納
+        Transform _tf = other.GetComponent<Transform>();
+        Rigidbody _rb = other.GetComponent<Rigidbody>();
 
-            // 出現
-            _tf.position = Pos;
+        // 行き先を計算
+        Vector3 _pos = _spawnPoint.transform.position;
+        _pos.x += Random.Range(-_randX, _randX);
+        _pos.z += Random.Range(-_randZ, _randZ);
 
-            //// 触れたやつを記録
-            //GameObject _obj = other.GameObject();
-            //Quaternion _qua = other.gameObject.transform.rotation;
+        // 出現
+        var Task = Spawn(_tf, _pos,_rb, destroyCancellationToken);
+        if (await Task.SuppressCancellationThrow()) { return; }
 
-            //// 行き先を計算
-            //Vector3 Pos = _spawnPoint.transform.position;
-            //Pos.x += Random.Range(-_randX, _randX);
-            //Pos.z += Random.Range(-_randZ, _randZ);
-
-            //// 削除出現
-            //Destroy(other.gameObject);
-            //Instantiate(_obj, Pos,_qua, transform.parent.parent);
-
-        }
+        
     }
 
     // ---------------------------- PrivateMethod
 
-    private void RiverFlow(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            var _rb = other.GetComponent<Rigidbody>();
 
-            _rb.AddForce(
-                transform.right * _flowPower,
-                ForceMode.Impulse);
-        }
+    private async UniTask Spawn(Transform tf,Vector3 pos,Rigidbody rb, CancellationToken ct)
+    {
+        await UIManager.Instance.DelayTime(_waitTime, ct);
+        // パワーリセット
+        rb.velocity = Vector3.zero;
+        // 移動
+        tf.position = pos;
     }
 }
