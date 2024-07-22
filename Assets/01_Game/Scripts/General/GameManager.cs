@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
         {
             _state = state;
 
+            AudioBgm.Instance.BgmPlay();
+
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
             var input_p1 = _players[0].GetComponent<PlayerInput>();
             var input_p2 = _players[1].GetComponent<PlayerInput>();

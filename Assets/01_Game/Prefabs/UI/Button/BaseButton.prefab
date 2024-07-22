@@ -120,15 +120,15 @@ MonoBehaviour:
   _text: {fileID: 1160248530374559937}
   _pressedTextPos: -5
   _image: {fileID: 6787687427215467289}
-  _normalImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  _normalImage: {fileID: -1921079725, guid: 1c1a3ecd44100c64985d149801914759, type: 3}
   _normalColor: {r: 0, g: 0, b: 0, a: 1}
-  _highlightImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _highlightColor: {r: 1, g: 1, b: 1, a: 0.47058824}
+  _highlightImage: {fileID: 572811116, guid: 1c1a3ecd44100c64985d149801914759, type: 3}
+  _highlightColor: {r: 0, g: 0, b: 0, a: 1}
   _highlightClip:
     m_PersistentCalls:
       m_Calls: []
-  _pressedImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  _pressedColor: {r: 0.015686275, g: 0, b: 0, a: 0.47058824}
+  _pressedImage: {fileID: -1999883818, guid: 1c1a3ecd44100c64985d149801914759, type: 3}
+  _pressedColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   _pressedClip:
     m_PersistentCalls:
       m_Calls: []
@@ -153,8 +153,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1921079725, guid: 1c1a3ecd44100c64985d149801914759, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -251,8 +251,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
+  m_sharedMaterial: {fileID: 2515648102493707508, guid: cb699c8f725d5d84abcdbe455beb6edd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

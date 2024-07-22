@@ -524,10 +524,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 1
-  _speed: 4
+  _speed: 5
   _rotateSpeed: 300
   _jumpSpeed: 6
-  _maxDropDistance: 9.5
+  _maxDropDistance: 9
   _partner: {fileID: 6987891211183325558}
   _moveEffect: {fileID: 6650199810314842004, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
   _recoveryEffect: {fileID: 4569046032561653572, guid: bda1e053334dd114ea722f2748ed1892, type: 3}
@@ -851,10 +851,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 0
-  _speed: 4
+  _speed: 5
   _rotateSpeed: 300
   _jumpSpeed: 6
-  _maxDropDistance: 9.5
+  _maxDropDistance: 9
   _partner: {fileID: 4767918362542567046}
   _moveEffect: {fileID: 6650199810314842004, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
   _recoveryEffect: {fileID: 4569046032561653572, guid: bda1e053334dd114ea722f2748ed1892, type: 3}
@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movePlayerName: 0
   _life: 0
-  _maxLife: 3
+  _maxLife: 5
   _maxAttract: 20
   _waitDynFriction: 0
   _moveDynFriction: 0
