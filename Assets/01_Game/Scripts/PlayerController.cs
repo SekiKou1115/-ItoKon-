@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Effect")]
     [SerializeField, Tooltip("移動")] private ParticleSystem _moveEffect;
+    [SerializeField, Tooltip("回復")] private ParticleSystem _recoveryEffect;
+    [SerializeField, Tooltip("行動不能")] private GameObject _stunEffect;
 
     [Header("Audio")]
     [SerializeField, Tooltip("ダメージ")] private UnityEvent _seDamage;
@@ -126,6 +128,7 @@ public class PlayerController : MonoBehaviour
             // ダメージ音
             _seDamage?.Invoke();
             _isIncapacitated = true;
+            _stunEffect.SetActive(_isIncapacitated);
 
             if (PlayerManager.Instance.MovePlayerName == _name)
             {
@@ -143,6 +146,7 @@ public class PlayerController : MonoBehaviour
         _isHitGround = false;
         _dropDistance = gameObject.transform.position.y;
         _isIncapacitated = false;
+        _stunEffect.SetActive(_isIncapacitated);
     }
 
     private void Update()
@@ -171,9 +175,12 @@ public class PlayerController : MonoBehaviour
             }
         }
         // 相方に触れたとき
-        else if (collision.gameObject.CompareTag("Player"))
+        else if (collision.gameObject.CompareTag("Player") && _isIncapacitated)
         {
             _isIncapacitated = false;
+            _stunEffect.SetActive(_isIncapacitated);
+
+            Instantiate(_recoveryEffect, gameObject.transform);
         }
     }
 
