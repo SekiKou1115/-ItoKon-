@@ -1,10 +1,14 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TreeController : MonoBehaviour
 {
+    // ---------------------------- SerializeField
+    [SerializeField, Tooltip("“|‚ê‚éŠp“x")] private float _angle = 90f;
+
     // -------------------------------- PrivateField
     private bool _isFallDown = false;
     private Rigidbody _rb;
@@ -26,7 +30,7 @@ public class TreeController : MonoBehaviour
     /// </summary>
     private void FallDown()
     {
-        if(transform.childCount == 0 && !_isFallDown)
+        if (transform.childCount == 0 && !_isFallDown)
         {
             _rb.isKinematic = false;
 
@@ -39,7 +43,7 @@ public class TreeController : MonoBehaviour
 
             _isFallDown = true;
         }
-        else if(_isFallDown && transform.localEulerAngles.x >= 90f)
+        else if (_isFallDown && transform.localEulerAngles.x >= _angle)
         {
             _rb.isKinematic = true;
 
