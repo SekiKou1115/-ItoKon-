@@ -33,14 +33,13 @@ public class Title : MonoBehaviour
             //  スタート時タスク
             var startTask = StartTitle(destroyCancellationToken);
             if (await startTask.SuppressCancellationThrow()) { return; }
-
         }
         else
         {
             var skipTask = SkipTitle(destroyCancellationToken);
             if (await skipTask.SuppressCancellationThrow()) { return; }
         }
-        
+
     }
 
     private void Awake()
@@ -75,7 +74,7 @@ public class Title : MonoBehaviour
 
         };
         // 待機移動
-        async UniTask DelayMove(CancellationToken ct) 
+        async UniTask DelayMove(CancellationToken ct)
         {
             await UIManager.Instance.DelayTime(_waitTime, ct);
             await UIManager.Instance.Move(_logoFrame, _positions[0].position, _duration, _ease, ct);
@@ -97,7 +96,7 @@ public class Title : MonoBehaviour
     /// <returns></returns>
     private async UniTask EndTitle(CancellationToken ct)
     {
-        if(!_isDoneTitle)
+        if (!_isDoneTitle)
         {
             //  待機
             await UIManager.Instance.DelayTime(_waitTime, ct);
@@ -124,6 +123,7 @@ public class Title : MonoBehaviour
 
         // 状態遷移
         await GameManager.Instance.StateChange(GameState.DEFAULT, ct);
+        AudioBgm.Instance.BgmPlay();
 
     }
 

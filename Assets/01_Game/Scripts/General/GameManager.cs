@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour
     // ---------------------------- Field
 
     //private Slider _distanceSlider;
-    private GameState _state;
+    private GameState _state = GameState.EVENTS;
     private readonly string DEFAULT_MAP = "Player", PAUSE_MAP = "Pause", EVENT_MAP = "Event";
 
     // ---------------------------- Property
     public GameState State { get { return _state; } /*set { _state = value; } */}
-    
+
 
     // ---------------------------- UnityMessage
 
@@ -85,10 +85,10 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        void SetState( string actionMap)
+        void SetState(string actionMap)
         {
             _state = state;
-            
+
             var input = PlayerManager.Instance.GetComponent<PlayerInput>();
             var input_p1 = _players[0].GetComponent<PlayerInput>();
             var input_p2 = _players[1].GetComponent<PlayerInput>();
@@ -153,14 +153,14 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     private async UniTask StartTask(CancellationToken ct)
     {
-        if 
+        if
             (SceneManager.GetActiveScene().buildIndex == 0)
         {
             Cursor.visible = false;
             DistanceCalculation(true);
             await StateChange(GameState.EVENTS, ct);
         }
-        else if 
+        else if
             (SceneManager.GetActiveScene().buildIndex == 1)
         {
             Cursor.visible = true;
