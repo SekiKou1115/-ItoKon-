@@ -61,7 +61,7 @@ public class Pause : MonoBehaviour
 
     public async void OnRestart()
     {
-       await UIManager.Instance.SceneLoad(SceneManager.GetActiveScene().buildIndex);
+       await UIManager.Instance.SceneLoad(0);
     }
 
     public void OnQuit()
