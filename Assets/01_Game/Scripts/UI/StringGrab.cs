@@ -32,7 +32,7 @@ public class StringGrab : MonoBehaviour
     void Update()
     {
         // …‚ğ’Í‚ñ‚Å‚¢‚é‚©‚Ì”»’è
-        if (PlayerManager.Instance.IsWait) // ğŒ®‚Ì’†‚É…‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚©‚Ì”»’è‚ğ“ü‚ê‚é
+        if (PlayerManager.Instance.IsGrab) // ğŒ®‚Ì’†‚É…‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚©‚Ì”»’è‚ğ“ü‚ê‚é
         {
             // ‚±‚±‚ÉÀÛ‚Ég‚¤‰æ‘œ‚ğ“ü‚ê‚é
             _uiGrab.SetActive(true);
