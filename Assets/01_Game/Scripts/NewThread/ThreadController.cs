@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 
 public class ThreadController : MonoBehaviour
 {
+    // -------------------------------- Singleton
+    public static ThreadController Instance;
+
     // -------------------------------- SerializeField
     [SerializeField] private GameObject _groom;
     [SerializeField] private GameObject _bride;
@@ -18,7 +21,19 @@ public class ThreadController : MonoBehaviour
 
     private ObiRopeCursor _cursor;
 
+    // -------------------------------- Property
+    public float GetSetMaxDist
+    {
+        get => _maxDist;
+        set => _maxDist = value;
+    }
+
     // -------------------------------- UnityMassege
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         _cursor = GetComponent<ObiRopeCursor>();
