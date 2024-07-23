@@ -123,6 +123,7 @@ public class Title : MonoBehaviour
 
         // ó‘Ô‘JˆÚ
         await GameManager.Instance.StateChange(GameState.DEFAULT, ct);
+        PlayerManager.Instance.StartCameraOff();
         AudioBgm.Instance.BgmPlay();
 
     }

@@ -1385,10 +1385,12 @@ MonoBehaviour:
   _maxAttract: 20
   _waitDynFriction: 0
   _moveDynFriction: 0
+  _startLookCamera: {fileID: 0}
   _freeLookCameraList:
   - {fileID: 0}
   - {fileID: 0}
-  _unselectedPriority: 0
+  _startPriority: 20
+  _unselectedPriority: 1
   _selectedPriority: 10
   _seChange:
     m_PersistentCalls:
