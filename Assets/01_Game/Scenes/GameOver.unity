@@ -1512,6 +1512,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1553211591556959783, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1673653292700611267, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130373494997645427, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: _players
+      value: 
+      objectReference: {fileID: 1523090284}
     - target: {fileID: 8303909974406856902, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1524,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Pause, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8451250657881216070, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
+      propertyPath: _players
+      value: 
+      objectReference: {fileID: 297670654}
     - target: {fileID: 8457496438219513700, guid: 056a836debc08e74ab93261f96cb5303, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
