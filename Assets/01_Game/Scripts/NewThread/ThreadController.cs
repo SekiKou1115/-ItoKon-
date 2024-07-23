@@ -18,6 +18,13 @@ public class ThreadController : MonoBehaviour
 
     private ObiRopeCursor _cursor;
 
+    // -------------------------------- Property
+    public float GetSetMaxDist
+    {
+        get => _maxDist;
+        set => _maxDist = value;
+    }
+
     // -------------------------------- UnityMassege
     private void Start()
     {
