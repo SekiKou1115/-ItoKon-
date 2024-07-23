@@ -24,8 +24,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, Tooltip("行動中の動摩擦")] private float _moveDynFriction;
 
     [Header("カメラ")]
+    [SerializeField, Tooltip("初期カメラ")] private CinemachineFreeLook _startLookCamera;
     [SerializeField, Tooltip("カメラ一覧")] private CinemachineFreeLook[] _freeLookCameraList;
-    [SerializeField, Tooltip("非選択時優先度")] private int _unselectedPriority = 0;
+    [SerializeField, Tooltip("初期優先")] private int _startPriority = 0;
+    [SerializeField, Tooltip("非選択時優先度")] private int _unselectedPriority = 1;
     [SerializeField, Tooltip("選択時優先度")] private int _selectedPriority = 10;
 
     [Header("Audio")]
@@ -119,6 +121,14 @@ public class PlayerManager : MonoBehaviour
         UIManager.Instance.HPDraw(_life);
     }
 
+    /// <summary>
+    /// 初期カメラを切る
+    /// </summary>
+    public void StartCameraOff()
+    {
+        _startLookCamera.Priority = 0;
+    }
+
 
     private void Awake()
     {
@@ -141,11 +151,7 @@ public class PlayerManager : MonoBehaviour
             return;
 
         // バーチャルカメラの優先度を初期化
-        for (var i = 0; i < _freeLookCameraList.Length; ++i)
-        {
-            _freeLookCameraList[i].Priority =
-                (i == _currentCamera ? _selectedPriority : _unselectedPriority);
-        }
+        _startLookCamera.Priority = _startPriority;
     }
 
     private void Start()
