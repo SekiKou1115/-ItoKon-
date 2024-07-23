@@ -6,6 +6,9 @@ using Unity.VisualScripting;
 
 public class ThreadController : MonoBehaviour
 {
+    // -------------------------------- Singleton
+    public static ThreadController Instance;
+
     // -------------------------------- SerializeField
     [SerializeField] private GameObject _groom;
     [SerializeField] private GameObject _bride;
@@ -26,6 +29,14 @@ public class ThreadController : MonoBehaviour
     }
 
     // -------------------------------- UnityMassege
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
         _cursor = GetComponent<ObiRopeCursor>();
