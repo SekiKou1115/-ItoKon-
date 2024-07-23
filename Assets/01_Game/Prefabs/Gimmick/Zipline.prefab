@@ -396,6 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8647855042654741812}
+  - component: {fileID: 2861424703016685454}
   m_Layer: 0
   m_Name: Zipline
   m_TagString: Untagged
@@ -421,6 +422,21 @@ Transform:
   - {fileID: 4393404143432662344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2861424703016685454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456611864383661231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a93b3e53154264b877d9aa1b18b57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player1: {fileID: 4272003459160689884}
+  _player2: {fileID: 459391449580943306}
+  _thread: {fileID: 8376649742995139938}
 --- !u!1 &2487275110045799395
 GameObject:
   m_ObjectHideFlags: 0
