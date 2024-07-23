@@ -39,7 +39,11 @@ public class PlayerManager : MonoBehaviour
     private int _currentCamera = 0; // 選択中のバーチャルカメラのインデックス
     private Collider _coll; // コライダーのマテリアル変えるよう
 
+    // 掴んでいるか
+    private bool _isGrabbed;
+
     public bool IsWait => _isWait;
+    public bool IsGrab => _isGrabbed;
     public Name MovePlayerName
     {
         get { return _movePlayerName; }
@@ -57,6 +61,7 @@ public class PlayerManager : MonoBehaviour
 
         OnSwitch();
     }
+
     public void OnSwitch()
     {
         if ((_freeLookCameraList == null || _freeLookCameraList.Length <= 0))
@@ -110,6 +115,18 @@ public class PlayerManager : MonoBehaviour
     {
         _isWait = !_isWait;
         Attract();
+    }
+
+    public void OnGrab(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            _isGrabbed = true;
+        }
+        else
+        {
+            _isGrabbed= false;
+        }
     }
 
     /// <summary>

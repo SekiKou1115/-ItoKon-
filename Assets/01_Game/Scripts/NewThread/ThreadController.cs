@@ -59,13 +59,16 @@ public class ThreadController : MonoBehaviour
         }
 
         // ’·‚³‚Ì•ÏX
-        if (_minDist < dist && dist < _maxDist)
+        if ((_minDist < dist && dist < _maxDist)
+            && !PlayerManager.Instance.IsGrab)
         {
             _cursor.ChangeLength(dist);
         }
 
+        Debug.Log(gameObject.GetComponent<ObiRope>().restLength);
+
         // ’·‚³ãŒÀ‚ÌˆÚ“®‚Ì§ŒÀ
-        if (dist >= _maxDist)
+        if (dist >= _maxDist || PlayerManager.Instance.IsGrab)
         {
             _groom.GetComponent<Rigidbody>().mass = 1f;
             _bride.GetComponent<Rigidbody>().mass = 1f;
