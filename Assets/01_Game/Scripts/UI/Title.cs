@@ -13,6 +13,9 @@ public class Title : MonoBehaviour
     [SerializeField, Tooltip("ロゴ")] private GameObject _logoFrame;
     [SerializeField, Tooltip("テキスト")] private GameObject _textFrame;
 
+    [SerializeField, Tooltip("ステージ仮実装")] private GameObject _TutorialPos;
+
+
     [Header("Unitask&DoTween")]
     [SerializeField] private float _waitTime;
     [SerializeField] private float _duration;
@@ -137,6 +140,9 @@ public class Title : MonoBehaviour
             var endTask = EndTitle(destroyCancellationToken);
             if (await endTask.SuppressCancellationThrow()) { return; }
             this.gameObject.SetActive(false);
+            await UIManager.Instance.DelayTime(2f, ct);// 仮
+            _TutorialPos.SetActive(true);// 仮
+
         }
     }
 }
