@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
     private bool _Attracted; // 引っ張られているか判定
-    private bool _isMove; // 移動しているか判定
+    public bool _isMove; // 移動しているか判定
 
     public PlayerManager.Name Name => _name;
     public bool IsMove => _isMove;
@@ -242,15 +242,18 @@ public class PlayerController : MonoBehaviour
                 _rotateSpeed * Time.deltaTime);
         }
 
+        // キャラが動いている時
         if (moveForward != Vector3.zero &&
             !_seWalkStone.isPlaying &&
             _isHitGround)
         {
+            _isMove = true;
             // 移動音
             _seWalkStone?.Play();
         }
         else if (moveForward == Vector3.zero)
         {
+            _isMove = false;
             // 移動音
             _seWalkStone?.Stop();
         }
@@ -275,9 +278,22 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private bool GroundCheck()
     {
+        return true;
+
+
+        Debug.DrawRay(gameObject.transform.position - new Vector3(0, _footPos, 0),
+            new Vector3(0, _rayDistance, 0),
+            Color.red, 1);
+
         // 足元にレイ飛ばす
-        if (Physics.SphereCast(gameObject.transform.position + new Vector3(0, _rayRadius, 0), _rayRadius, Vector3.down, out RaycastHit hit, _rayDistance, _layerMask))
+        if (Physics.Raycast(
+            gameObject.transform.position - new Vector3(0, _footPos, 0),
+            Vector3.down,
+            out RaycastHit hit,
+            _rayDistance,
+            _layerMask))
         {
+            Debug.Log("レイ飛ばした");
             if (hit.collider.transform.CompareTag("Ground"))
             {
                 Debug.Log("地面に触れていた");
