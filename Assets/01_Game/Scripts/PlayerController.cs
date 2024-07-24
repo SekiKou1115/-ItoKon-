@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("ジャンプ開始速度")] private float _jumpSpeed;
     [SerializeField, Tooltip("最大落下距離")] private float _maxDropDistance;
     [SerializeField, Tooltip("相方")] private GameObject _partner;
+    [SerializeField, Tooltip("奈落")] private float _outDropDistance = 0;
+
+    [SerializeField, Tooltip("触れたくないもの")] private LayerMask _layerMask;
+    [SerializeField, Tooltip("レイ飛ばす距離")] private float _rayDistance;
+    [SerializeField, Tooltip("レイの半径")] private float _rayRadius;
+    [SerializeField, Tooltip("中心から足の距離")] private float _footPos;
 
     [Header("Effect")]
     [SerializeField, Tooltip("移動")] private ParticleSystem _moveEffect;
@@ -33,14 +39,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("移動")] private AudioSource _seWalkStone;
 
 
-    private bool _isHitGround; // 地面に触れているか判定
+    [SerializeField] private bool _isHitGround; // 地面に触れているか判定
     private Rigidbody _rb;
     private Vector2 _inputMove;
     private float _dropDistance; // 落下距離
     private bool _isIncapacitated; // 行動不能判定
     private bool _Attracted; // 引っ張られているか判定
+    private bool _isMove; // 移動しているか判定
 
     public PlayerManager.Name Name => _name;
+    public bool IsMove => _isMove;
     public bool IsIncapacitated
     {
         get { return _isIncapacitated; }
@@ -83,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (!context.performed)
             return;
 
-        if (_isHitGround)
+        if (_isHitGround && GroundCheck())
         {
             _isHitGround = false;
             // ジャンプ
@@ -159,12 +167,16 @@ public class PlayerController : MonoBehaviour
             // 操作キャラの時
             PlayerMove();
         }
+        if (gameObject.transform.position.y < _outDropDistance)
+        {
+            Damage();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // 地面に触れたとき
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && GroundCheck())
         {
             // 落下処理
             LandingDamage();
@@ -256,5 +268,25 @@ public class PlayerController : MonoBehaviour
         {
             Damage();
         }
+    }
+
+    /// <summary>
+    /// 足元が地面か判定 true = 地面に触れている
+    /// </summary>
+    private bool GroundCheck()
+    {
+        // 足元にレイ飛ばす
+        if (Physics.SphereCast(gameObject.transform.position + new Vector3(0, _rayRadius, 0), _rayRadius, Vector3.down, out RaycastHit hit, _rayDistance, _layerMask))
+        {
+            if (hit.collider.transform.CompareTag("Ground"))
+            {
+                Debug.Log("地面に触れていた");
+                return true;
+
+            }
+        }
+
+        Debug.Log("地面に触れていなかった");
+        return false;
     }
 }
