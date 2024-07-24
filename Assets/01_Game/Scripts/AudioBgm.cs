@@ -24,16 +24,23 @@ public class AudioBgm : MonoBehaviour
 
     public void BgmPlay()
     {
+        Debug.Log("BGM" + GameManager.Instance.State);
         switch (GameManager.Instance.State)
         {
             case GameState.DEFAULT: // ゲーム
-                _bgmTitle?.Stop();
-                _bgmPlay?.Play();
+                if (!_bgmPlay.isPlaying)
+                {
+                    _bgmTitle?.Stop();
+                    _bgmPlay?.Play();
+                }
                 break;
 
             case GameState.GAMECLEAR: // クリア
-                _bgmPlay?.Stop();
-                _bgmGameClear?.Play();
+                if (!_bgmGameClear.isPlaying)
+                {
+                    _bgmPlay?.Stop();
+                    _bgmGameClear?.Play();
+                }
                 break;
 
             case GameState.GAMEOVER: // オーバー
