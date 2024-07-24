@@ -14,6 +14,6 @@ public static class BaseEnum
     }
     public enum GameState
     {
-        DEFAULT, PAUSE, GAMECLEAR, GAMEOVER, EVENTS,
+        DEFAULT, PAUSE, GAMECLEAR, GAMEOVER, EVENTS,TUTORIAL,TUTORIAL2,// ‰¼
     }
 }

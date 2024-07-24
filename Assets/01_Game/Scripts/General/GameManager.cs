@@ -83,6 +83,14 @@ public class GameManager : MonoBehaviour
                 SetState(EVENT_MAP);
 
                 break;
+
+            case GameState.TUTORIAL:
+                SetState(EVENT_MAP);
+                break;
+                // ‰¼
+            case GameState.TUTORIAL2:
+                SetState(EVENT_MAP);
+                break;
         }
 
         void SetState(string actionMap)

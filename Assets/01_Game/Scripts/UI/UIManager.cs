@@ -28,7 +28,8 @@ public class UIManager : MonoBehaviour
     [SerializeField, Tooltip("ポーズ")] private  GameObject _pauseFrame;
     [SerializeField, Tooltip("クリア")] private GameObject _clearFrame;
     [SerializeField, Tooltip("ゲームオーバー")] private GameObject _gameoverFrame;
-
+    [SerializeField, Tooltip("チュートリアル")] private GameObject _tutorialFrame;
+    [SerializeField, Tooltip("チュートリアル")] private GameObject _tutorialFrame2;// 仮
 
     [Header("デフォルトUI")]
     [SerializeField, Tooltip("通常時ESCテキスト")] private TextMeshProUGUI _escText;
@@ -184,6 +185,12 @@ public class UIManager : MonoBehaviour
 
             case GameState.EVENTS:
                 _titleFrame.SetActive(true);
+                break;
+            case GameState.TUTORIAL:
+                _tutorialFrame.SetActive(true);
+                break;
+            case GameState.TUTORIAL2:// 仮
+                _tutorialFrame2.SetActive(true);
                 break;
 
         }
