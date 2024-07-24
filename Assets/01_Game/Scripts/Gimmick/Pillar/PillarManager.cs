@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.Events;
 using Obi;
 
@@ -17,7 +18,7 @@ public class PillarManager : MonoBehaviour
 
     private void Awake()
     {
-        if(!_solver)_solver = GetComponent<ObiSolver>();
+        if (!_solver) _solver = GetComponent<ObiSolver>();
     }
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public class PillarManager : MonoBehaviour
                     {
                         wrappable.SetWrapped();
                     }
-                    
+
                 }
             }
         }
@@ -80,3 +81,24 @@ public class PillarManager : MonoBehaviour
         _clearApply.SetActive(true);
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(PillarManager))]
+public class PillarManagerCustom:Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        PillarManager pillarManager = target as PillarManager;
+
+        if (GUILayout.Button("ThisGimmickClear!!"))
+        {
+            if (Application.isPlaying)
+            {
+                pillarManager.OnClear();
+            }
+        }
+    }
+}
+#endif
+
