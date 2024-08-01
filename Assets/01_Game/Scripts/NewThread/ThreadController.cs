@@ -76,11 +76,11 @@ public class ThreadController : MonoBehaviour
         // Å‘å‹——£Žž‚ÌˆÚ“®‚Ì§ŒÀ
         if (dist >= _maxDist)
         {
-            _rope.SetMass(_normalMass);
+            _rope.SetMass(_pullMass);
         }
         else
         {
-            _rope.SetMass(_pullMass);
+            _rope.SetMass(_normalMass);
         }
 
         // Ž…‚ð’£‚é
