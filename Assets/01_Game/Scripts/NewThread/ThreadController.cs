@@ -10,15 +10,23 @@ public class ThreadController : MonoBehaviour
     public static ThreadController Instance;
 
     // -------------------------------- SerializeField
+    [Header("アタッチ")]
     [SerializeField] private GameObject _groom;
     [SerializeField] private GameObject _bride;
     [SerializeField] private ObiParticleAttachment _groomOpa;
     [SerializeField] private ObiParticleAttachment _brideOpa;
-    [SerializeField] private float _maxDist;
+
+    [Header("ステータス")]
+    [SerializeField, Tooltip("最大距離")] private float _maxDist;
+    [SerializeField, Tooltip("通常時質量")] private float _normalMass = 0.01f;
+    [SerializeField, Tooltip("最大距離時質量")] private float _pullMass = 10f;
 
     // -------------------------------- PrivateField
+    // 最低距離
     private const float _minDist = 1f;
 
+    // 参照用変数
+    private ObiRope _rope;
     private ObiRopeCursor _cursor;
 
     // -------------------------------- Property
@@ -36,6 +44,7 @@ public class ThreadController : MonoBehaviour
 
     private void Start()
     {
+        _rope = GetComponent<ObiRope>();
         _cursor = GetComponent<ObiRopeCursor>();
     }
 
@@ -59,24 +68,29 @@ public class ThreadController : MonoBehaviour
         }
 
         // 長さの変更
-        if ((_minDist < dist && dist < _maxDist)
-            && !PlayerManager.Instance.IsGrab)
+        if (_minDist < dist && dist < _maxDist)
         {
             _cursor.ChangeLength(dist);
         }
 
-        Debug.Log(gameObject.GetComponent<ObiRope>().restLength);
-
-        // 長さ上限時の移動の制限
-        if (dist >= _maxDist || PlayerManager.Instance.IsGrab)
+        // 最大距離時の移動の制限
+        if (dist >= _maxDist)
         {
-            _groom.GetComponent<Rigidbody>().mass = 1f;
-            _bride.GetComponent<Rigidbody>().mass = 1f;
+            _rope.SetMass(_pullMass);
         }
         else
         {
-            _groom.GetComponent<Rigidbody>().mass = 100f;
-            _bride.GetComponent<Rigidbody>().mass = 100f;
+            _rope.SetMass(_normalMass);
+        }
+
+        // 糸を張る
+        if(PlayerManager.Instance.IsGrab)
+        {
+            _rope.stretchingScale = 0.1f;
+        }
+        else
+        {
+            _rope.stretchingScale = 1.05f;
         }
     }
 }
